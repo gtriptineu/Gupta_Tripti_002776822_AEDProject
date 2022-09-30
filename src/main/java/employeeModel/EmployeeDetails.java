@@ -10,23 +10,23 @@ import java.util.Date;
  *
  * @author Lenovo
  */
-public class EmployeeDetails {
+public class EmployeeDetails extends ContactDetails{
     private String employeeName;
-    private int employeeId;
+    private String employeeId;
     private int employeeAge;
     private String employeeGender;
-    private Date employeeStartDate;
+    private String employeeStartDate;
     private String employeeLevel;
     private String teamInfo;
     private String positionTitle;
     private ContactDetails contactDetails;
     private String photoUrl;
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -70,13 +70,13 @@ public class EmployeeDetails {
         this.positionTitle = positionTitle;
     }
 
-    public ContactDetails getContactDetails() {
-        return contactDetails;
-    }
-
-    public void setContactDetails(ContactDetails contactDetails) {
-        this.contactDetails = contactDetails;
-    }
+//    public ContactDetails getContactDetails() {
+//        return contactDetails;
+//    }
+//
+//    public void setContactDetails(ContactDetails contactDetails) {
+//        this.contactDetails = contactDetails;
+//    }
 
     public String getPhotoUrl() {
         return photoUrl;
@@ -94,11 +94,11 @@ public class EmployeeDetails {
         this.employeeName = employeeName;
     }
 
-    public Date getEmployeeStartDate() {
+    public String getEmployeeStartDate() {
         return employeeStartDate;
     }
 
-    public void setEmployeeStartDate(Date employeeStartDate) {
+    public void setEmployeeStartDate(String employeeStartDate) {
         this.employeeStartDate = employeeStartDate;
     }
     
