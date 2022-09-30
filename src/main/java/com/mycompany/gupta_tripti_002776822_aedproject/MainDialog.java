@@ -4,6 +4,8 @@
  */
 package com.mycompany.gupta_tripti_002776822_aedproject;
 
+import employeeModel.EmployeeDetails;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +15,11 @@ public class MainDialog extends javax.swing.JFrame {
     /**
      * Creates new form MainDialog
      */
+    EmployeeDetails emp;
+    
     public MainDialog() {
         initComponents();
+        emp = new EmployeeDetails();
     }
 
     /**
@@ -35,8 +40,18 @@ public class MainDialog extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         addEmployee.setText("Add New Employee");
+        addEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmployeeActionPerformed(evt);
+            }
+        });
 
         viewEmployee.setText("View Employee Details");
+        viewEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewEmployeeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout leftPanelLayout = new javax.swing.GroupLayout(leftPanel);
         leftPanel.setLayout(leftPanelLayout);
@@ -89,6 +104,18 @@ public class MainDialog extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeActionPerformed
+        // TODO add your handling code here:
+        AddEmployeeDetails addpanel = new AddEmployeeDetails(emp);
+        splitPane.setRightComponent(addpanel);
+    }//GEN-LAST:event_addEmployeeActionPerformed
+
+    private void viewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeActionPerformed
+        // TODO add your handling code here:
+        ViewEmployee viewPanel = new ViewEmployee(emp);
+        splitPane.setRightComponent(viewPanel);
+    }//GEN-LAST:event_viewEmployeeActionPerformed
 
     /**
      * @param args the command line arguments

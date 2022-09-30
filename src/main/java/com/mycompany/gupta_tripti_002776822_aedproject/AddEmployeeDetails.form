@@ -43,18 +43,20 @@
                           <Component id="idTextField" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="ageTextField" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="genderTextField" min="-2" pref="275" max="-2" attributes="0"/>
-                          <Component id="dateTextField" min="-2" pref="275" max="-2" attributes="0"/>
-                          <Component id="levelTextField" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="teamInfoTextField" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="positionTextField" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="phoneTextField" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="photoTextField" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="emailTextField" min="-2" pref="275" max="-2" attributes="0"/>
                           <Component id="saveButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="dateTextField" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
+                              <Component id="levelTextField" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="113" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

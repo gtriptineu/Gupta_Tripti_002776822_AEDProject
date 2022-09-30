@@ -4,6 +4,9 @@
  */
 package com.mycompany.gupta_tripti_002776822_aedproject;
 
+import employeeModel.EmployeeDetails;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lenovo
@@ -13,8 +16,11 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
     /**
      * Creates new form ViewEmployee
      */
-    public AddEmployeeDetails() {
+    
+    EmployeeDetails employee;
+    public AddEmployeeDetails( EmployeeDetails emp) {
         initComponents();
+        this.employee = emp;
     }
 
     /**
@@ -201,15 +207,16 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
                             .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(genderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(levelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(teamInfoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(positionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(photoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(saveButton))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(saveButton)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(levelTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,6 +319,19 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
+        employee.setEmployeeName(nameTextField.getText());
+        employee.setEmployeeId(idTextField.getText());
+        employee.setEmployeeAge(Integer.parseInt(ageTextField.getText()));
+        employee.setEmployeeGender(genderTextField.getText());
+        employee.setEmployeeStartDate(dateTextField.getText());
+        employee.setEmployeeLevel(levelTextField.getText());
+        employee.setTeamInfo(teamInfoTextField.getText());
+        employee.setPositionTitle(positionTextField.getText());
+        employee.setPhotoUrl(photoTextField.getText());
+        employee.setPhoneNumber(phoneTextField.getText());
+        employee.setEmailAddress(emailTextField.getText());
+        
+        JOptionPane.showMessageDialog(this, "Employee Details are saved");
     }//GEN-LAST:event_saveButtonActionPerformed
 
 
