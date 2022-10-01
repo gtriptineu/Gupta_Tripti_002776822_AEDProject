@@ -336,9 +336,6 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
         employee.setPhoneNumber(phoneTextField.getText());
         employee.setEmailAddress(emailTextField.getText());
         
-        System.out.print(employee);
-        System.out.println("-------------------------");
-        System.out.println(allEmp);
         JOptionPane.showMessageDialog(this, "Employee Details are saved");
         
         nameTextField.setText("");
