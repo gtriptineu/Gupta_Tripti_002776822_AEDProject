@@ -40,9 +40,10 @@ public class MainDialog extends javax.swing.JFrame {
         viewEmployee = new javax.swing.JButton();
         rightPanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
+        title1Label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1300, 600));
 
         addEmployee.setText("Add New Employee");
         addEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -85,23 +86,35 @@ public class MainDialog extends javax.swing.JFrame {
 
         titleLabel.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLabel.setText("Application for Human Resource ");
+        titleLabel.setText("Application for Human Resource Officer");
+
+        title1Label.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        title1Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title1Label.setText("For Managing Employee Data");
+        title1Label.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightPanelLayout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+            .addGroup(rightPanelLayout.createSequentialGroup()
+                .addGroup(rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rightPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(rightPanelLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(title1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(titleLabel)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addGap(183, 183, 183)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(title1Label)
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         splitPane.setRightComponent(rightPanel);
@@ -172,6 +185,7 @@ public class MainDialog extends javax.swing.JFrame {
     private javax.swing.JPanel leftPanel;
     private javax.swing.JPanel rightPanel;
     private javax.swing.JSplitPane splitPane;
+    private javax.swing.JLabel title1Label;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JButton viewEmployee;
     // End of variables declaration//GEN-END:variables
