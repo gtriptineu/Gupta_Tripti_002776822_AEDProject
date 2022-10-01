@@ -70,14 +70,6 @@ public class EmployeeDetails extends ContactDetails{
         this.positionTitle = positionTitle;
     }
 
-//    public ContactDetails getContactDetails() {
-//        return contactDetails;
-//    }
-//
-//    public void setContactDetails(ContactDetails contactDetails) {
-//        this.contactDetails = contactDetails;
-//    }
-
     public String getPhotoUrl() {
         return photoUrl;
     }
@@ -102,5 +94,9 @@ public class EmployeeDetails extends ContactDetails{
         this.employeeStartDate = employeeStartDate;
     }
     
+    @Override
+    public String toString(){
+        return employeeStartDate;
+    }
     
 }

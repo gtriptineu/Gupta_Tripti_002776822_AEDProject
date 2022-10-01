@@ -4,6 +4,7 @@
  */
 package com.mycompany.gupta_tripti_002776822_aedproject;
 
+import employeeModel.AllEmployees;
 import employeeModel.EmployeeDetails;
 import javax.swing.JOptionPane;
 
@@ -17,10 +18,13 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
      * Creates new form ViewEmployee
      */
     
-    EmployeeDetails employee;
-    public AddEmployeeDetails( EmployeeDetails emp) {
+//    EmployeeDetails employee;
+    AllEmployees allEmp;
+    
+    public AddEmployeeDetails( AllEmployees allEmp) {
         initComponents();
-        this.employee = emp;
+//        allEmp = new AllEmployees();
+        this.allEmp = allEmp;
     }
 
     /**
@@ -319,6 +323,7 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
+        EmployeeDetails employee = allEmp.addEmployeeDetails();
         employee.setEmployeeName(nameTextField.getText());
         employee.setEmployeeId(idTextField.getText());
         employee.setEmployeeAge(Integer.parseInt(ageTextField.getText()));
@@ -331,7 +336,24 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
         employee.setPhoneNumber(phoneTextField.getText());
         employee.setEmailAddress(emailTextField.getText());
         
+        System.out.print(employee);
+        System.out.println("-------------------------");
+        System.out.println(allEmp);
         JOptionPane.showMessageDialog(this, "Employee Details are saved");
+        
+        nameTextField.setText("");
+        idTextField.setText("");
+        ageTextField.setText("");
+        genderTextField.setText("");
+        dateTextField.setText("");
+        levelTextField.setText("");
+        teamInfoTextField.setText("");
+        positionTextField.setText("");
+        photoTextField.setText("");
+        phoneTextField.setText("");
+        emailTextField.setText("");
+        
+        
     }//GEN-LAST:event_saveButtonActionPerformed
 
 

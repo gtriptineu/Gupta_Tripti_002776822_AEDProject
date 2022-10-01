@@ -4,6 +4,7 @@
  */
 package com.mycompany.gupta_tripti_002776822_aedproject;
 
+import employeeModel.AllEmployees;
 import employeeModel.EmployeeDetails;
 
 /**
@@ -15,11 +16,13 @@ public class MainDialog extends javax.swing.JFrame {
     /**
      * Creates new form MainDialog
      */
-    EmployeeDetails emp;
+//    EmployeeDetails emp;
+    AllEmployees allEmp;
     
     public MainDialog() {
         initComponents();
-        emp = new EmployeeDetails();
+//        emp = new EmployeeDetails();
+        this.allEmp = new AllEmployees();
     }
 
     /**
@@ -38,6 +41,7 @@ public class MainDialog extends javax.swing.JFrame {
         rightPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1200, 600));
 
         addEmployee.setText("Add New Employee");
         addEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +77,7 @@ public class MainDialog extends javax.swing.JFrame {
                 .addComponent(addEmployee)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(viewEmployee)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(leftPanel);
@@ -82,11 +86,11 @@ public class MainDialog extends javax.swing.JFrame {
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 295, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 446, Short.MAX_VALUE)
         );
 
         splitPane.setRightComponent(rightPanel);
@@ -107,13 +111,13 @@ public class MainDialog extends javax.swing.JFrame {
 
     private void addEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeActionPerformed
         // TODO add your handling code here:
-        AddEmployeeDetails addpanel = new AddEmployeeDetails(emp);
+        AddEmployeeDetails addpanel = new AddEmployeeDetails(allEmp);
         splitPane.setRightComponent(addpanel);
     }//GEN-LAST:event_addEmployeeActionPerformed
 
     private void viewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEmployeeActionPerformed
         // TODO add your handling code here:
-        ViewEmployee viewPanel = new ViewEmployee(emp);
+        ViewEmployee viewPanel = new ViewEmployee(allEmp);
         splitPane.setRightComponent(viewPanel);
     }//GEN-LAST:event_viewEmployeeActionPerformed
 
