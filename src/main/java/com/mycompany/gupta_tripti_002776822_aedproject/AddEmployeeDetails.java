@@ -6,7 +6,6 @@ package com.mycompany.gupta_tripti_002776822_aedproject;
 
 import employeeModel.AllEmployees;
 import employeeModel.EmployeeDetails;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -361,33 +360,38 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
         "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         
-        EmployeeDetails employee = allEmp.addEmployeeDetails();
-        employee.setEmployeeName(nameTextField.getText());
-        employee.setEmployeeId(idTextField.getText());
-        employee.setEmployeeAge(Integer.parseInt(ageTextField.getText()));
-        employee.setEmployeeGender(genderTextField.getText());
-        employee.setEmployeeStartDate(dateTextField.getText());
-        employee.setEmployeeLevel(levelTextField.getText());
-        employee.setTeamInfo(teamInfoTextField.getText());
-        employee.setPositionTitle(positionTextField.getText());
-        employee.setPhotoUrl(photoTextField.getText());
-        employee.setPhoneNumber(phoneTextField.getText());
-        employee.setEmailAddress(emailTextField.getText());
+        if(!emailTextField.getText().matches(EMAIL_PATTERN)){
+            JOptionPane.showMessageDialog(this, "Please correct the Email Id. Format should be <text>@<text>.<text> ");
+            
+        } else {
+            EmployeeDetails employee = allEmp.addEmployeeDetails();
+            employee.setEmployeeName(nameTextField.getText());
+            employee.setEmployeeId(idTextField.getText());
+            employee.setEmployeeAge(Integer.parseInt(ageTextField.getText()));
+            employee.setEmployeeGender(genderTextField.getText());
+            employee.setEmployeeStartDate(dateTextField.getText());
+            employee.setEmployeeLevel(levelTextField.getText());
+            employee.setTeamInfo(teamInfoTextField.getText());
+            employee.setPositionTitle(positionTextField.getText());
+            employee.setPhotoUrl(photoTextField.getText());
+            employee.setPhoneNumber(phoneTextField.getText());
+            employee.setEmailAddress(emailTextField.getText());
         
-        JOptionPane.showMessageDialog(this, "Employee Details are saved");
-        
-        nameTextField.setText("");
-        idTextField.setText("");
-        ageTextField.setText("");
-        genderTextField.setText("");
-        dateTextField.setText("");
-        levelTextField.setText("");
-        teamInfoTextField.setText("");
-        positionTextField.setText("");
-        photoTextField.setText("");
-        phoneTextField.setText("");
-        emailTextField.setText("");
-        photoDisplayLabel.setIcon(null);
+            JOptionPane.showMessageDialog(this, "Employee Details are saved");
+
+            nameTextField.setText("");
+            idTextField.setText("");
+            ageTextField.setText("");
+            genderTextField.setText("");
+            dateTextField.setText("");
+            levelTextField.setText("");
+            teamInfoTextField.setText("");
+            positionTextField.setText("");
+            photoTextField.setText("");
+            phoneTextField.setText("");
+            emailTextField.setText("");
+            photoDisplayLabel.setIcon(null);
+        }
         
     }//GEN-LAST:event_saveButtonActionPerformed
 

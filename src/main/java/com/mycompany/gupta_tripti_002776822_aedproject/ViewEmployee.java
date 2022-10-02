@@ -28,6 +28,7 @@ public class ViewEmployee extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewEmployee
+     * @param allEmp
      */
     public ViewEmployee(AllEmployees allEmp) {
         initComponents();
@@ -553,7 +554,7 @@ public class ViewEmployee extends javax.swing.JPanel {
     private void filterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextFieldKeyReleased
         // TODO add your handling code here:
         DefaultTableModel table = (DefaultTableModel) viewTable.getModel();
-        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(table);
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(table); 
         String filterValue = filterTextField.getText();
         viewTable.setRowSorter(sorter);
         System.out.print(filterValue);
