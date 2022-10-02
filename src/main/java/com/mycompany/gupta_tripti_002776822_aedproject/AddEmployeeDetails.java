@@ -6,6 +6,8 @@ package com.mycompany.gupta_tripti_002776822_aedproject;
 
 import employeeModel.AllEmployees;
 import employeeModel.EmployeeDetails;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -131,6 +133,11 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
                 ageTextFieldActionPerformed(evt);
             }
         });
+        ageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ageTextFieldKeyTyped(evt);
+            }
+        });
 
         genderTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,9 +169,9 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
             }
         });
 
-        phoneTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneTextFieldActionPerformed(evt);
+        phoneTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phoneTextFieldKeyPressed(evt);
             }
         });
 
@@ -344,10 +351,6 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_positionTextFieldActionPerformed
 
-    private void phoneTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneTextFieldActionPerformed
-
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTextFieldActionPerformed
@@ -369,7 +372,7 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
         employee.setPositionTitle(positionTextField.getText());
         employee.setPhotoUrl(photoTextField.getText());
         employee.setPhoneNumber(phoneTextField.getText());
-         employee.setEmailAddress(emailTextField.getText());   
+        employee.setEmailAddress(emailTextField.getText());
         
         JOptionPane.showMessageDialog(this, "Employee Details are saved");
         
@@ -417,6 +420,40 @@ public class AddEmployeeDetails extends javax.swing.JPanel {
     private void photoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_photoTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_photoTextFieldActionPerformed
+
+    private void ageTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageTextFieldKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_ageTextFieldKeyTyped
+
+    private void phoneTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneTextFieldKeyPressed
+        // TODO add your handling code here:
+        String phoneNumber = phoneTextField.getText();
+        int phoneLength = phoneNumber.length();
+        char c = evt.getKeyChar();
+        // check for number 0 - 9
+        if(evt.getKeyChar()>= '0' && evt.getKeyChar()<= '9'){
+            if(phoneLength<10){
+                // length should not be more than 10
+                phoneTextField.setEditable(true);
+            } else {
+                // not editable if length is more than 10
+                phoneTextField.setEditable(false);
+            }
+        } else {
+            // Allow Backspace and Delete for edit
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || 
+                    evt.getExtendedKeyCode() == KeyEvent.VK_DELETE){
+                phoneTextField.setEditable(true);
+            } else {
+                phoneTextField.setEditable(false);
+            }
+        }
+        
+    }//GEN-LAST:event_phoneTextFieldKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addEmployeeLabel;

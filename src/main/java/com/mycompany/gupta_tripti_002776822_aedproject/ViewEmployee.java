@@ -6,6 +6,7 @@ package com.mycompany.gupta_tripti_002776822_aedproject;
 
 import employeeModel.AllEmployees;
 import employeeModel.EmployeeDetails;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -192,6 +193,11 @@ public class ViewEmployee extends javax.swing.JPanel {
                 ageTextFieldActionPerformed(evt);
             }
         });
+        ageTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ageTextFieldKeyTyped(evt);
+            }
+        });
 
         genderTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +234,11 @@ public class ViewEmployee extends javax.swing.JPanel {
                 phoneTextFieldActionPerformed(evt);
             }
         });
+        phoneTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phoneTextFieldKeyPressed(evt);
+            }
+        });
 
         photoTextField.setEditable(false);
         photoTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -249,11 +260,6 @@ public class ViewEmployee extends javax.swing.JPanel {
             }
         });
 
-        filterTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filterTextFieldActionPerformed(evt);
-            }
-        });
         filterTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 filterTextFieldKeyReleased(evt);
@@ -506,8 +512,6 @@ public class ViewEmployee extends javax.swing.JPanel {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-        int idToBeUpdated = viewTable.getSelectedRow();
-        System.out.print("id is--" + idToBeUpdated);
         int rowToBeUpdated = viewTable.getSelectedRow();
         if(rowToBeUpdated < 0 ){
             return;
@@ -546,10 +550,6 @@ public class ViewEmployee extends javax.swing.JPanel {
         
     }//GEN-LAST:event_updateButtonActionPerformed
 
-    private void filterTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_filterTextFieldActionPerformed
-
     private void filterTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextFieldKeyReleased
         // TODO add your handling code here:
         DefaultTableModel table = (DefaultTableModel) viewTable.getModel();
@@ -586,6 +586,39 @@ public class ViewEmployee extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_browseButtonActionPerformed
+
+    private void ageTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ageTextFieldKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(!Character.isDigit(c)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_ageTextFieldKeyTyped
+
+    private void phoneTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneTextFieldKeyPressed
+        // TODO add your handling code here:
+        String phoneNumber = phoneTextField.getText();
+        int phoneLength = phoneNumber.length();
+        char c = evt.getKeyChar();
+        // check for number 0 - 9
+        if(evt.getKeyChar()>= '0' && evt.getKeyChar()<= '9'){
+            if(phoneLength<10){
+                // length should not be more than 10
+                phoneTextField.setEditable(true);
+            } else {
+                // not editable if length is more than 10
+                phoneTextField.setEditable(false);
+            }
+        } else {
+            // Allow Backspace and Delete for edit
+            if (evt.getExtendedKeyCode()==KeyEvent.VK_BACK_SPACE || 
+                    evt.getExtendedKeyCode() == KeyEvent.VK_DELETE){
+                phoneTextField.setEditable(true);
+            } else {
+                phoneTextField.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_phoneTextFieldKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ageLabel;

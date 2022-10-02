@@ -4,7 +4,6 @@
  */
 package employeeModel;
 
-import java.util.Date;
 
 /**
  *
