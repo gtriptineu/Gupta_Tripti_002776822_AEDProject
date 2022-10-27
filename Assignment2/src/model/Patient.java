@@ -14,7 +14,7 @@ public class Patient extends Person {
     private boolean abnormalBloodPressure;
     private boolean abnormalTemperature;
     private boolean abnormalPulse;
-//    EncounterHistory encounterHistory = new EncounterHistory();
+    EncounterHistory encounterHistory = new EncounterHistory();
 
     public int getPatientId() {
         return patientId;
@@ -54,6 +54,14 @@ public class Patient extends Person {
 
     public void setAbnormalPulse(boolean abnormalPulse) {
         this.abnormalPulse = abnormalPulse;
+    }
+
+    public EncounterHistory getEncounterHistory() {
+        return encounterHistory;
+    }
+
+    public void setEncounterHistory(EncounterHistory encounterHistory) {
+        this.encounterHistory = encounterHistory;
     }
     
 }

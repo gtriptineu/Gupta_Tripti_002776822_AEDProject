@@ -8,7 +8,7 @@ package model;
  *
  * @author Lenovo
  */
-public class Person {
+public class Person extends House {
     private String name;
     private int age;
     private String gender;
