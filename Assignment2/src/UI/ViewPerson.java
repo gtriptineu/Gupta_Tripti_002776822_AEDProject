@@ -7,6 +7,7 @@ package UI;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
+import model.DoctorDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -19,6 +20,7 @@ public class ViewPerson extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     PatientDirectory patientDirectory;
     PersonDirectory personDirectory;
+    DoctorDirectory doctorDirectory;
 
     /**
      * Creates new form ViewPerson
@@ -64,6 +66,7 @@ public class ViewPerson extends javax.swing.JPanel {
         refreshButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         addPatientButton = new javax.swing.JButton();
+        addDoctorButton = new javax.swing.JButton();
 
         viewPersonTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,6 +159,13 @@ public class ViewPerson extends javax.swing.JPanel {
             }
         });
 
+        addDoctorButton.setText("Add as Doctor");
+        addDoctorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDoctorButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -198,6 +208,8 @@ public class ViewPerson extends javax.swing.JPanel {
                         .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addPatientButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addDoctorButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -216,7 +228,8 @@ public class ViewPerson extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchButton)
-                            .addComponent(addPatientButton)))
+                            .addComponent(addPatientButton)
+                            .addComponent(addDoctorButton)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -385,6 +398,13 @@ public class ViewPerson extends javax.swing.JPanel {
         splitPanel.setRightComponent(addPatientDetails);
     }//GEN-LAST:event_addPatientButtonActionPerformed
 
+    private void addDoctorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoctorButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = viewPersonTable.getSelectedRow();
+        DoctorDetails addDoctorDetails = new DoctorDetails(splitPanel,personDirectory,doctorDirectory, selectedRowIndex);
+        splitPanel.setRightComponent(addDoctorDetails);
+    }//GEN-LAST:event_addDoctorButtonActionPerformed
+
 
      private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) viewPersonTable.getModel();
@@ -404,6 +424,7 @@ public class ViewPerson extends javax.swing.JPanel {
          }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addDoctorButton;
     private javax.swing.JButton addPatientButton;
     private javax.swing.JTextField ageInput;
     private javax.swing.JLabel ageLabel;

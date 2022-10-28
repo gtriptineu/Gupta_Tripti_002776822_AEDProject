@@ -12,6 +12,10 @@ import java.util.ArrayList;
  */
 public class DoctorDirectory {
     private ArrayList<Doctor> doctorDirectory;
+    
+    public DoctorDirectory(){
+        this.doctorDirectory = new ArrayList<>();
+    }
 
     public ArrayList<Doctor> getDoctorDirectory() {
         return doctorDirectory;

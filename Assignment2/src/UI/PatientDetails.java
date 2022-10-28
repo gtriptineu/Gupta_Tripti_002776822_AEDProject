@@ -245,7 +245,6 @@ public class PatientDetails extends javax.swing.JPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        // TODO add your handling code here:
        if(nameInput.getText().equals(""))
        {
            JOptionPane.showMessageDialog(this, "Name Feild is empty");

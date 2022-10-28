@@ -10,6 +10,7 @@ package model;
  */
 public class Doctor extends Person{
     private int doctorID;
+    private String password;
     private PatientDirectory allPatients;
 
     public int getDoctorID() {
@@ -26,6 +27,14 @@ public class Doctor extends Person{
 
     public void setAllPatients(PatientDirectory allPatients) {
         this.allPatients = allPatients;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
 }

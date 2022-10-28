@@ -4,6 +4,7 @@
  */
 package UI;
 
+import model.DoctorDirectory;
 import model.PatientDirectory;
 import model.PersonDirectory;
 
@@ -22,6 +23,7 @@ public class Main extends javax.swing.JFrame {
     
     PersonDirectory personDirectory = new PersonDirectory();
     PatientDirectory patientDirectory = new PatientDirectory();
+    DoctorDirectory doctorDirectory = new DoctorDirectory();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +62,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         doctorButton.setText("Doctor");
+        doctorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doctorButtonActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("jButton1");
 
@@ -136,7 +143,12 @@ public class Main extends javax.swing.JFrame {
         splitPanel.setRightComponent(addPatientDetails);
     }//GEN-LAST:event_patientButtonActionPerformed
 
-    
+    private void doctorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorButtonActionPerformed
+        // TODO add your handling code here:
+        DoctorLogin loginDoctor = new DoctorLogin(splitPanel, personDirectory, doctorDirectory);
+        splitPanel.setRightComponent(loginDoctor);
+    }//GEN-LAST:event_doctorButtonActionPerformed
+
 
 //    private void btnPersonActionPerformed(java.awt.event.ActionEvent evt) {                                          
 //        // TODO add your handling code here:

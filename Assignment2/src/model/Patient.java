@@ -10,10 +10,6 @@ package model;
  */
 public class Patient extends Person {
     private int patientId;
-    private boolean abnormal;
-    private boolean abnormalBloodPressure;
-    private boolean abnormalTemperature;
-    private boolean abnormalPulse;
     EncounterHistory encounterHistory = new EncounterHistory();
 
     public int getPatientId() {
@@ -22,38 +18,6 @@ public class Patient extends Person {
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
-    }
-
-    public boolean isAbnormal() {
-        return abnormal;
-    }
-
-    public void setAbnormal(boolean abnormal) {
-        this.abnormal = abnormal;
-    }
-
-    public boolean isAbnormalBloodPressure() {
-        return abnormalBloodPressure;
-    }
-
-    public void setAbnormalBloodPressure(boolean abnormalBloodPressure) {
-        this.abnormalBloodPressure = abnormalBloodPressure;
-    }
-
-    public boolean isAbnormalTemperature() {
-        return abnormalTemperature;
-    }
-
-    public void setAbnormalTemperature(boolean abnormalTemperature) {
-        this.abnormalTemperature = abnormalTemperature;
-    }
-
-    public boolean isAbnormalPulse() {
-        return abnormalPulse;
-    }
-
-    public void setAbnormalPulse(boolean abnormalPulse) {
-        this.abnormalPulse = abnormalPulse;
     }
 
     public EncounterHistory getEncounterHistory() {

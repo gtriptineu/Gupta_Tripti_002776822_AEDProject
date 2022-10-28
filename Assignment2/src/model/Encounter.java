@@ -8,7 +8,7 @@ package model;
  *
  * @author Lenovo
  */
-public class Encounter {
+public class Encounter extends VitalSigns{
     private String updateTime;
 
     public String getUpdateTime() {

@@ -7,6 +7,7 @@ package UI;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
+import model.Encounter;
 import model.Patient;
 import model.PatientDirectory;
 import model.PersonDirectory;
@@ -196,39 +197,39 @@ public class ViewPatient extends javax.swing.JPanel {
 
     private void viewVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewVitalsButtonActionPerformed
         // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPatients.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a patient to view Vital Signs.");
-//            return;
-//        }
-//
-//        DefaultTableModel modelpat = (DefaultTableModel) tblViewPatients.getModel();
-//        Patient selectedPatient = (Patient) modelpat.getValueAt(selectedRowIndex, 0);
-//        int PatientID = selectedPatient.getPatientID();
-//
-//        DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
-//        model.setRowCount(0);
-//
-//        for(Patient p: patientDirectory.getPatientDirectory())
-//        {
-//            if(p.getPatientID()==PatientID)
-//            {
-//                Object[] row = new Object[6];
-//                for(Encounter e: p.getEH().getEncounterHistory())
-//                {
-//                    row[0]=p;
-//                    row[1]=p.getPatientID();
-//                    row[2]=e.getPulse();
-//                    row[3]=e.getBloodPressure();
-//                    row[4]=e.getTemperature();
-//                    row[5]=e.getUpdateTime();
-//
-//                    model.addRow(row);
-//                }
-//            }
-//        }
+        int selectedRowIndex = viewPatientDetailsTable.getSelectedRow();
+
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a patient to view Vital Signs.");
+            return;
+        }
+
+        DefaultTableModel modelpat = (DefaultTableModel) viewPatientDetailsTable.getModel();
+        Patient selectedPatient = (Patient) modelpat.getValueAt(selectedRowIndex, 0);
+        int PatientID = selectedPatient.getPatientId();
+
+        DefaultTableModel model = (DefaultTableModel) viewVitalsTable.getModel();
+        model.setRowCount(0);
+
+        for(Patient p: patientDirectory.getPatientDirectory())
+        {
+            if(p.getPatientId()==PatientID)
+            {
+                Object[] row = new Object[6];
+                for(Encounter e: p.getEncounterHistory().getEncounterHistory())
+                {
+                    row[0]=p;
+                    row[1]=p.getPatientId();
+                    row[2]=e.getPulse();
+                    row[3]=e.getBloodPressure();
+                    row[4]=e.getTemperature();
+                    row[5]=e.getUpdateTime();
+
+                    model.addRow(row);
+                }
+            }
+        }
     }//GEN-LAST:event_viewVitalsButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -255,29 +256,29 @@ public class ViewPatient extends javax.swing.JPanel {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-//        String SearchString = txtSearch.getText();
-//        DefaultTableModel model = (DefaultTableModel) tblViewPatients.getModel();
-//        model.setRowCount(0);
-//
-//        for(Patient p: patientDirectory.getPatientDirectory())
-//        {
-//            System.out.println(SearchString);
-//            System.out.println(p.getName());
-//            if(p.getName().equals(SearchString))
-//            {
-//                Object[] row = new Object[7];
-//                row[0]=p;
-//                row[1]=p.getAge();
-//                row[2]=p.getGender();
-//                row[3]=p.getResidence();
-//                row[4]=p.getCity();
-//                row[5]=p.getCommunity();
-//                row[6]=p.getPatientID();
-//
-//                model.addRow(row);
-//                break;
-//            }
-//        }
+        String SearchString = searchInput.getText();
+        DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
+        model.setRowCount(0);
+
+        for(Patient p: patientDirectory.getPatientDirectory())
+        {
+            System.out.println(SearchString);
+            System.out.println(p.getName());
+            if(p.getName().equals(SearchString))
+            {
+                Object[] row = new Object[7];
+                row[0]=p;
+                row[1]=p.getAge();
+                row[2]=p.getGender();
+                row[3]=p.getHouse();
+                row[4]=p.getCity();
+                row[5]=p.getCommunity();
+                row[6]=p.getHouse();
+
+                model.addRow(row);
+                break;
+            }
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
@@ -288,36 +289,36 @@ public class ViewPatient extends javax.swing.JPanel {
     private void addVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsButtonActionPerformed
         // TODO add your handling code here:
 
-//        int selectedRowIndex = tblViewPatients.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a row to add Vital Sign.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPatients.getModel();
-//        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
-//        int PatientID = selectedPatient.getPatientID();
-//
-//        AddVitalSigns addVitalSigns = new AddVitalSigns(SplitPane,patientDirectory,personDirectory,PatientID);
-//        SplitPane.setRightComponent(addVitalSigns);
+        int selectedRowIndex = viewPatientDetailsTable.getSelectedRow();
+
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row to add Vital Sign.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
+        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
+        int PatientID = selectedPatient.getPatientId();
+
+        AddVitalSigns addVitalSigns = new AddVitalSigns(splitPanel,patientDirectory,personDirectory,PatientID);
+        splitPanel.setRightComponent(addVitalSigns);
     }//GEN-LAST:event_addVitalsButtonActionPerformed
 
     private void editVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVitalsButtonActionPerformed
         // TODO add your handling code here:
-//        int selectedRowIndex = tblVitals.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a row to Edit it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPatients.getModel();
-//        int patientSelectedIndex = tblViewPatients.getSelectedRow();
-//        Patient selectedPatient = (Patient) model.getValueAt(patientSelectedIndex, 0);
-//
-//        EditVitals editVitals = new EditVitals(SplitPane,patientDirectory,personDirectory,selectedPatient,selectedRowIndex);
-//        SplitPane.setRightComponent(editVitals);
+        int selectedRowIndex = viewVitalsTable.getSelectedRow();
+
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row to Edit it.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
+        int patientSelectedIndex = viewPatientDetailsTable.getSelectedRow();
+        Patient selectedPatient = (Patient) model.getValueAt(patientSelectedIndex, 0);
+
+        EditVitals editVitals = new EditVitals(splitPanel,patientDirectory,personDirectory,selectedPatient,selectedRowIndex);
+        splitPanel.setRightComponent(editVitals);
     }//GEN-LAST:event_editVitalsButtonActionPerformed
 
 
