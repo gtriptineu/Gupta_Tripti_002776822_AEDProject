@@ -8,7 +8,7 @@ package model;
  *
  * @author Lenovo
  */
-public class System extends City{
+public class System extends Community{
     private DoctorDirectory allDoctor;
     private PatientDirectory allPatient;
     private PersonDirectory allPerson;
