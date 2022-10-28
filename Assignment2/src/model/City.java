@@ -10,7 +10,7 @@ package model;
  * @author Subhash
  */
 public class City {
-    protected String City;
+    private String City;
 
     public String getCity() {
         return City;

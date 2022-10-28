@@ -10,14 +10,14 @@ package model;
  * @author Subhash
  */
 public class House extends Community{
-    protected String Residence;
+    private String house;
 
-    public String getResidence() {
-        return Residence;
+    public String getHouse() {
+        return house;
     }
 
-    public void setResidence(String Residence) {
-        this.Residence = Residence;
+    public void setHouse(String house) {
+        this.house = house;
     }
-    
+
 }

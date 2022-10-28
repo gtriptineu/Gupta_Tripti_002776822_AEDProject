@@ -20,11 +20,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
-                      <Component id="patientLabel" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="doctorHeadingLabel" min="-2" pref="160" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -39,21 +39,21 @@
                               </Group>
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cityInput" min="-2" pref="334" max="-2" attributes="0"/>
-                                  <Component id="houseInput" min="-2" pref="334" max="-2" attributes="0"/>
-                                  <Component id="ageInput" min="-2" pref="334" max="-2" attributes="0"/>
-                                  <Component id="nameInput" min="-2" pref="334" max="-2" attributes="0"/>
+                                  <Component id="cityInput" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
+                                  <Component id="houseInput" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
+                                  <Component id="ageInput" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
+                                  <Component id="nameInput" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="communityLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="patientIdLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="doctorIdLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="patientIdInput" min="-2" pref="334" max="-2" attributes="0"/>
-                                  <Component id="communityInput" min="-2" pref="334" max="-2" attributes="0"/>
+                                  <Component id="doctorIdInput" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
+                                  <Component id="communityInput" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -62,7 +62,7 @@
                       <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                       <Component id="maleRadioButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="femaleRadioButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="femaleRadioButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       <Component id="otherRadioButton" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -73,7 +73,7 @@
                       <Component id="viewButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="141" max="32767" attributes="0"/>
+              <EmptySpace pref="401" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,7 +81,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="patientLabel" min="-2" max="-2" attributes="0"/>
+              <Component id="doctorHeadingLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -96,12 +96,12 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="genderLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="maleRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="femaleRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="femaleRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="otherRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="houseLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="houseLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="houseInput" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -116,26 +116,44 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="patientIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="patientIdInput" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="doctorIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="doctorIdInput" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="saveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="viewButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="113" max="32767" attributes="0"/>
+              <EmptySpace pref="173" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="patientLabel">
+    <Component class="javax.swing.JButton" name="saveButton">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
+        <Property name="text" type="java.lang.String" value="Save"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="viewButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="maleRadioButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="genderRadioButtonGroup"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Patient Details"/>
+        <Property name="text" type="java.lang.String" value="Male"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="femaleRadioButton1">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="genderRadioButtonGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Female"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="genderLabel">
@@ -147,6 +165,15 @@
         <Property name="text" type="java.lang.String" value="Gender:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="doctorIdLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Doctor ID:"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="houseLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -156,6 +183,10 @@
         <Property name="text" type="java.lang.String" value="House:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="ageInput">
+    </Component>
+    <Component class="javax.swing.JTextField" name="doctorIdInput">
+    </Component>
     <Component class="javax.swing.JLabel" name="communityLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -163,6 +194,16 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Community:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nameInput">
+    </Component>
+    <Component class="javax.swing.JLabel" name="doctorHeadingLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Doctor Details"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="cityLabel">
@@ -174,6 +215,8 @@
         <Property name="text" type="java.lang.String" value="City:"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JTextField" name="houseInput">
+    </Component>
     <Component class="javax.swing.JLabel" name="nameLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -182,6 +225,8 @@
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Name:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="communityInput">
     </Component>
     <Component class="javax.swing.JLabel" name="ageLabel">
       <Properties>
@@ -192,14 +237,6 @@
         <Property name="text" type="java.lang.String" value="Age:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="ageInput">
-    </Component>
-    <Component class="javax.swing.JTextField" name="nameInput">
-    </Component>
-    <Component class="javax.swing.JTextField" name="houseInput">
-    </Component>
-    <Component class="javax.swing.JTextField" name="communityInput">
-    </Component>
     <Component class="javax.swing.JRadioButton" name="otherRadioButton">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -209,49 +246,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="cityInput">
-    </Component>
-    <Component class="javax.swing.JButton" name="saveButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Save"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="viewButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="View"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="maleRadioButton">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="genderRadioButtonGroup"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Male"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="femaleRadioButton">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="genderRadioButtonGroup"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Female"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="patientIdLabel">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="0"/>
-        </Property>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Patient ID:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="patientIdInput">
     </Component>
   </SubComponents>
 </Form>

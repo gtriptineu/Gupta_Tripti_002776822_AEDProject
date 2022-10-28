@@ -64,4 +64,9 @@ public class Patient extends Person {
         this.encounterHistory = encounterHistory;
     }
     
+    @Override
+    public String toString()
+    {
+        return name;
+    }
 }

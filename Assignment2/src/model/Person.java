@@ -9,7 +9,7 @@ package model;
  * @author Lenovo
  */
 public class Person extends House {
-    private String name;
+    protected String name;
     private int age;
     private String gender;
 
@@ -37,5 +37,9 @@ public class Person extends House {
         this.gender = gender;
     }
     
-    
+    @Override
+    public String toString()
+    {
+        return name;
+    }
 }

@@ -4,8 +4,10 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.PatientDirectory;
+import model.Person;
 import model.PersonDirectory;
 
 /**
@@ -18,12 +20,12 @@ public class PersonDetails extends javax.swing.JPanel {
      * Creates new form PersonDetails
      */
     PersonDirectory personDirectory;
-    private JSplitPane splitPane;
+    private JSplitPane splitPanel;
     PatientDirectory patientDirectory;
-    public PersonDetails(JSplitPane SplitPane, PersonDirectory personDirectory, PatientDirectory patientDirectory) {
+    public PersonDetails(JSplitPane SplitPanel, PersonDirectory personDirectory, PatientDirectory patientDirectory) {
         initComponents();
         this.personDirectory = personDirectory;
-        this.splitPane = SplitPane;
+        this.splitPanel = SplitPanel;
         this.patientDirectory = patientDirectory;
     }
 
@@ -89,8 +91,18 @@ public class PersonDetails extends javax.swing.JPanel {
         femaleRadioButton1.setText("Female");
 
         saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         viewButton.setText("View");
+        viewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewButtonActionPerformed(evt);
+            }
+        });
 
         genderRadioGroup.add(otherRadioButton);
         otherRadioButton.setText("Other");
@@ -180,6 +192,78 @@ public class PersonDetails extends javax.swing.JPanel {
                     .addContainerGap(329, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+        maleRadioButton.setActionCommand("male");
+        femaleRadioButton1.setActionCommand("female");
+        otherRadioButton.setActionCommand("other");
+        if(nameInput.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(this, "Name Feild is empty");
+       }
+       else if(ageInput.getText().equals(""))
+       {
+        JOptionPane.showMessageDialog(this, "Age Feild is empty");
+       }
+       else if(genderRadioGroup.getSelection().getActionCommand().equals(""))
+       {
+        JOptionPane.showMessageDialog(this, "Gender Feild is empty");
+       }
+       else if(houseInput.getText().equals(""))
+       {
+        JOptionPane.showMessageDialog(this, "Residence Feild is empty");
+       }
+       else if(cityInput.getText().equals(""))
+       {
+        JOptionPane.showMessageDialog(this, "City Feild is empty");
+       }
+       else if(communityInput.getText().equals(""))
+       {
+        JOptionPane.showMessageDialog(this, "Community Feild is empty");
+       }
+       else if(!isInteger(ageInput.getText()))
+       {
+        JOptionPane.showMessageDialog(this, "Age Entered should be Integer");
+       }
+       else if(Integer.parseInt(ageInput.getText())>200)
+       {
+        JOptionPane.showMessageDialog(this, "Age Should not be over 200");
+       }
+       else
+       {
+        String name = nameInput.getText();
+        int age = Integer.parseInt(ageInput.getText());
+        String gender = genderRadioGroup.getSelection().getActionCommand();
+        String house = houseInput.getText();
+        String city = cityInput.getText();
+        String community = communityInput.getText();
+        
+        Person p = personDirectory.addNewPerson();
+        p.setName(name);
+        p.setAge(age);
+        p.setGender(gender);
+        p.setHouse(house);
+        p.setCity(city);
+        p.setCommunity(community);
+        
+        JOptionPane.showMessageDialog(this, "Person Details Saved");
+        
+        nameInput.setText("");
+        ageInput.setText("");
+        genderRadioGroup.clearSelection();
+        houseInput.setText("");
+        cityInput.setText("");
+        communityInput.setText("");
+       }
+       System.out.println("person directory"+ personDirectory );
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        // TODO add your handling code here:
+        ViewPerson viewPersonDetails = new ViewPerson(splitPanel, personDirectory,patientDirectory);
+        splitPanel.setRightComponent(viewPersonDetails);
+    }//GEN-LAST:event_viewButtonActionPerformed
 
     private static boolean isInteger(String s) {
     try { 

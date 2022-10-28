@@ -10,7 +10,7 @@ package model;
  * @author Subhash
  */
 public class Community extends City{
-    protected String Community;
+    private String Community;
 
     public String getCommunity() {
         return Community;
