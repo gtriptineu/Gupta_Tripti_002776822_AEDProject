@@ -8,49 +8,42 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.Patient;
 import model.PatientDirectory;
-import model.Person;
 import model.PersonDirectory;
 
 /**
  *
  * @author Lenovo
  */
-public class PatientDetails extends javax.swing.JPanel {
+public class EditPatient extends javax.swing.JPanel {
+    
     PatientDirectory patientDirectory;
     private JSplitPane splitPanel;
+    private int PatientID;
     PersonDirectory personDirectory;
-    private int selectedRowIndex;
     String initialName;
-    int initialAge;
     String initialGender;
+    int initialAge;
 
     /**
-     * Creates new form PatientDetails
-     * @param splitPanel
-     * @param patientDirectory
-     * @param personDirectory
-     * @param selectedRowIndex
+     * Creates new form EditPatient
      */
-    public PatientDetails(JSplitPane splitPanel, PatientDirectory patientDirectory, PersonDirectory personDirectory,int selectedRowIndex) {
+    public EditPatient(JSplitPane splitPanel,PatientDirectory patientDirectory,PersonDirectory personDirectory,int PatientID) {
         initComponents();
-        this.splitPanel = splitPanel;
         this.patientDirectory = patientDirectory;
+        this.splitPanel = splitPanel;
+        this.PatientID = PatientID;
         this.personDirectory = personDirectory;
-        this.selectedRowIndex = selectedRowIndex;
-        maleRadioButton.setActionCommand("Male");
-        femaleRadioButton.setActionCommand("Female");
-        otherRadioButton.setActionCommand("Other");
-        int x = 0;
-        for(Person p: personDirectory.getPersonDirectory())
-        {
-            if(x==selectedRowIndex)
-            {
-            this.initialGender=p.getGender();
-            this.initialName=p.getName();
-            this.initialAge=p.getAge();
-            nameInput.setText(p.getName());
-            ageInput.setText(String.valueOf(p.getAge()));
-            switch (p.getGender()) {
+        
+        for(Patient p: patientDirectory.getPatientDirectory())
+         {
+             if(p.getPatientId()==PatientID)
+             {
+             this.initialName = p.getName();
+             this.initialAge = p.getAge();
+             this.initialGender = p.getGender();
+             nameInput.setText(p.getName());
+             ageInput.setText(String.valueOf(p.getAge()));
+             switch (p.getGender()) {
                 case "Male" -> {
                     maleRadioButton.setSelected(true);
                 }
@@ -61,12 +54,12 @@ public class PatientDetails extends javax.swing.JPanel {
                     otherRadioButton.setSelected(true);
                 }
             }
-            communityInput.setText(p.getCommunity());
-            houseInput.setText(p.getHouse());
-            cityInput.setText(p.getCity());
-            }
-            x++;
-        }
+             houseInput.setText(p.getHouse());
+             cityInput.setText(p.getCity());
+             communityInput.setText(p.getCommunity());
+             patientIdInput.setText(String.valueOf(p.getPatientId()));
+             }
+         }
     }
 
     /**
@@ -79,32 +72,53 @@ public class PatientDetails extends javax.swing.JPanel {
     private void initComponents() {
 
         genderRadioButtonGroup = new javax.swing.ButtonGroup();
-        patientLabel = new javax.swing.JLabel();
-        genderLabel = new javax.swing.JLabel();
-        houseLabel = new javax.swing.JLabel();
-        communityLabel = new javax.swing.JLabel();
-        cityLabel = new javax.swing.JLabel();
-        nameLabel = new javax.swing.JLabel();
-        ageLabel = new javax.swing.JLabel();
-        ageInput = new javax.swing.JTextField();
-        nameInput = new javax.swing.JTextField();
-        houseInput = new javax.swing.JTextField();
-        communityInput = new javax.swing.JTextField();
-        otherRadioButton = new javax.swing.JRadioButton();
-        cityInput = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
-        viewButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         maleRadioButton = new javax.swing.JRadioButton();
         femaleRadioButton = new javax.swing.JRadioButton();
+        genderLabel = new javax.swing.JLabel();
         patientIdLabel = new javax.swing.JLabel();
+        houseLabel = new javax.swing.JLabel();
+        ageInput = new javax.swing.JTextField();
         patientIdInput = new javax.swing.JTextField();
+        communityLabel = new javax.swing.JLabel();
+        nameInput = new javax.swing.JTextField();
+        patientLabel = new javax.swing.JLabel();
+        cityLabel = new javax.swing.JLabel();
+        houseInput = new javax.swing.JTextField();
+        nameLabel = new javax.swing.JLabel();
+        communityInput = new javax.swing.JTextField();
+        ageLabel = new javax.swing.JLabel();
+        otherRadioButton = new javax.swing.JRadioButton();
+        cityInput = new javax.swing.JTextField();
 
-        patientLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        patientLabel.setText("Patient Details");
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        genderRadioButtonGroup.add(maleRadioButton);
+        maleRadioButton.setText("Male");
+
+        genderRadioButtonGroup.add(femaleRadioButton);
+        femaleRadioButton.setText("Female");
 
         genderLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         genderLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         genderLabel.setText("Gender:");
+
+        patientIdLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        patientIdLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        patientIdLabel.setText("Patient ID:");
 
         houseLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         houseLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -113,6 +127,9 @@ public class PatientDetails extends javax.swing.JPanel {
         communityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         communityLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         communityLabel.setText("Community:");
+
+        patientLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        patientLabel.setText("Patient Details");
 
         cityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cityLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -128,30 +145,6 @@ public class PatientDetails extends javax.swing.JPanel {
 
         genderRadioButtonGroup.add(otherRadioButton);
         otherRadioButton.setText("Other");
-
-        saveButton.setText("Save");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
-
-        viewButton.setText("View");
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
-            }
-        });
-
-        genderRadioButtonGroup.add(maleRadioButton);
-        maleRadioButton.setText("Male");
-
-        genderRadioButtonGroup.add(femaleRadioButton);
-        femaleRadioButton.setText("Female");
-
-        patientIdLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        patientIdLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        patientIdLabel.setText("Patient ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -197,8 +190,8 @@ public class PatientDetails extends javax.swing.JPanel {
                         .addGap(190, 190, 190)
                         .addComponent(saveButton)
                         .addGap(39, 39, 39)
-                        .addComponent(viewButton)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                        .addComponent(backButton)))
+                .addContainerGap(318, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,109 +231,116 @@ public class PatientDetails extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
-                    .addComponent(viewButton))
-                .addContainerGap(113, Short.MAX_VALUE))
+                    .addComponent(backButton))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        // TODO add your handling code here:
-       if(nameInput.getText().equals(""))
-       {
-           JOptionPane.showMessageDialog(this, "Name Feild is empty");
-       }
-       else if(ageInput.getText().equals(""))
-       {
-        JOptionPane.showMessageDialog(this, "Age Feild is empty");
-       }
-       else if(genderRadioButtonGroup.getSelection().getActionCommand().equals(""))
-       {
-        JOptionPane.showMessageDialog(this, "Gender Feild is empty");
-       }
-       else if(houseInput.getText().equals(""))
-       {
-        JOptionPane.showMessageDialog(this, "Residence Feild is empty");
-       }
-       else if(cityInput.getText().equals(""))
-       {
-        JOptionPane.showMessageDialog(this, "City Feild is empty");
-       }
-       else if(communityInput.getText().equals(""))
-       {
-        JOptionPane.showMessageDialog(this, "Community Feild is empty");
-       }
-       else if(patientIdInput.getText().equals(""))
-       {
-        JOptionPane.showMessageDialog(this, "Patient ID Feild is empty");
-       }
-       else if(!isInteger(ageInput.getText()))
-       {
-        JOptionPane.showMessageDialog(this, "Age Entered should be Integer");
-       }
-       else if(Integer.parseInt(ageInput.getText())>200)
-       {
-        JOptionPane.showMessageDialog(this, "Age Should not be over 200");
-       }
-       else if(!isInteger(patientIdInput.getText()))
-       {
-        JOptionPane.showMessageDialog(this, "Patient ID Entered should be Integer");
-       }
-       
-       else if(!(initialName.equals(nameInput.getText())) || !(initialGender.equals(genderRadioButtonGroup.getSelection().getActionCommand())) || (initialAge!=Integer.parseInt(ageInput.getText())))
-       {
-           JOptionPane.showMessageDialog(this, "Current values don't match the initial values");
-       }
-       else
+        maleRadioButton.setActionCommand("Male");
+        femaleRadioButton.setActionCommand("Female");
+        otherRadioButton.setActionCommand("Other");
+        if(nameInput.getText().equals(""))
         {
-        int t=0;
-        for(Patient pt: patientDirectory.getPatientDirectory())
-        {
-            if(pt.getPatientId()==Integer.parseInt(patientIdInput.getText()))
-                t++;
+            JOptionPane.showMessageDialog(this, "Name Feild is empty");
         }
-        if(t==0)
+        else if(ageInput.getText().equals(""))
         {
-        String name = nameInput.getText();
-        int age = Integer.parseInt(ageInput.getText());
-        String gender = genderRadioButtonGroup.getSelection().getActionCommand();
-        String house = houseInput.getText();
-        String city = cityInput.getText();
-        String community = communityInput.getText();
-        int patientId = Integer.parseInt(patientIdInput.getText());
-        
-        Patient p = patientDirectory.addNewPatient();
-        p.setName(name);
-        p.setAge(age);
-        p.setGender(gender);
-        p.setHouse(house);
-        p.setCity(city);
-        p.setCommunity(community);
-        p.setPatientId(patientId);
-        
-        JOptionPane.showMessageDialog(this, "Patient Details Saved");
-        
-        nameInput.setText("");
-        ageInput.setText("");
-        genderRadioButtonGroup.clearSelection();
-        houseInput.setText("");
-        cityInput.setText("");
-        communityInput.setText("");
-        patientIdInput.setText("");
+            JOptionPane.showMessageDialog(this, "Age Feild is empty");
+        }
+        else if(genderRadioButtonGroup.getSelection().getActionCommand().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Gender Feild is empty");
+        }
+        else if(houseInput.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Residence Feild is empty");
+        }
+        else if(cityInput.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "City Feild is empty");
+        }
+        else if(communityInput.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Community Feild is empty");
+        }
+        else if(patientIdInput.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Patient ID Feild is empty");
+        }
+        else if(!isInteger(ageInput.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Age Entered should be Integer");
+        }
+        else if(Integer.parseInt(ageInput.getText())>200)
+        {
+            JOptionPane.showMessageDialog(this, "Age Should not be over 200");
+        }
+        else if(!isInteger(patientIdInput.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Patient ID Entered should be Integer");
+        }
+
+        else if(!(initialName.equals(nameInput.getText())) ||
+                !(initialGender.equals(genderRadioButtonGroup.getSelection().getActionCommand())) ||
+                (initialAge!=Integer.parseInt(ageInput.getText())))
+        {
+            JOptionPane.showMessageDialog(this, "Current values don't match the initial values");
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "This patient ID is already used");
-        }
+            int t=0;
+            for(Patient pt: patientDirectory.getPatientDirectory())
+            {
+                if(pt.getPatientId()==Integer.parseInt(patientIdInput.getText()))
+                t++;
+            }
+            if(t==0)
+            {
+                String name = nameInput.getText();
+                int age = Integer.parseInt(ageInput.getText());
+                String gender = genderRadioButtonGroup.getSelection().getActionCommand();
+                System.out.println("gender"+ gender);
+                String house = houseInput.getText();
+                String city = cityInput.getText();
+                String community = communityInput.getText();
+                int patientId = Integer.parseInt(patientIdInput.getText());
+
+                Patient p = patientDirectory.addNewPatient();
+                System.out.println("person patient"+ p);
+                p.setName(name);
+                p.setAge(age);
+                p.setGender(gender);
+                p.setHouse(house);
+                p.setCity(city);
+                p.setCommunity(community);
+                p.setPatientId(patientId);
+                
+                System.out.println("person patient---"+ p);
+                
+                JOptionPane.showMessageDialog(this, "Patient Details Saved");
+
+                nameInput.setText("");
+                ageInput.setText("");
+                genderRadioButtonGroup.clearSelection();
+                houseInput.setText("");
+                cityInput.setText("");
+                communityInput.setText("");
+                patientIdInput.setText("");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "This patient ID is already used");
+            }
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
         ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory);
         splitPanel.setRightComponent(viewPatientDetails);
-    }//GEN-LAST:event_viewButtonActionPerformed
-
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private static boolean isInteger(String s) {
     try { 
@@ -353,10 +353,11 @@ public class PatientDetails extends javax.swing.JPanel {
     // only got here if we didn't return false
     return true;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageInput;
     private javax.swing.JLabel ageLabel;
+    private javax.swing.JButton backButton;
     private javax.swing.JTextField cityInput;
     private javax.swing.JLabel cityLabel;
     private javax.swing.JTextField communityInput;
@@ -374,6 +375,5 @@ public class PatientDetails extends javax.swing.JPanel {
     private javax.swing.JLabel patientIdLabel;
     private javax.swing.JLabel patientLabel;
     private javax.swing.JButton saveButton;
-    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
 }

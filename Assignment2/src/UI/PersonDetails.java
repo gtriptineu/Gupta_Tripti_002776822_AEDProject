@@ -195,9 +195,9 @@ public class PersonDetails extends javax.swing.JPanel {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        maleRadioButton.setActionCommand("male");
-        femaleRadioButton1.setActionCommand("female");
-        otherRadioButton.setActionCommand("other");
+        maleRadioButton.setActionCommand("Male");
+        femaleRadioButton1.setActionCommand("Female");
+        otherRadioButton.setActionCommand("Other");
         if(nameInput.getText().equals(""))
        {
            JOptionPane.showMessageDialog(this, "Name Feild is empty");

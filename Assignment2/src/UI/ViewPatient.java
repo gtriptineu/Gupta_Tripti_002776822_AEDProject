@@ -4,6 +4,7 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 import model.Patient;
@@ -42,7 +43,6 @@ public class ViewPatient extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         viewPatientDetailsTable = new javax.swing.JTable();
         viewVitalsButton = new javax.swing.JButton();
-        deletePatientButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         EditPatientButton = new javax.swing.JButton();
         searchButton = new javax.swing.JButton();
@@ -52,7 +52,6 @@ public class ViewPatient extends javax.swing.JPanel {
         editVitalsButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         viewVitalsTable = new javax.swing.JTable();
-        deleteVitalsButton = new javax.swing.JButton();
 
         viewPatientDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,13 +76,6 @@ public class ViewPatient extends javax.swing.JPanel {
         viewVitalsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewVitalsButtonActionPerformed(evt);
-            }
-        });
-
-        deletePatientButton.setText("Delete Patient");
-        deletePatientButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletePatientButtonActionPerformed(evt);
             }
         });
 
@@ -147,13 +139,6 @@ public class ViewPatient extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(viewVitalsTable);
 
-        deleteVitalsButton.setText("Delete Vitals");
-        deleteVitalsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteVitalsButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,20 +155,17 @@ public class ViewPatient extends javax.swing.JPanel {
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(backButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                         .addComponent(viewVitalsButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addVitalsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(EditPatientButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deletePatientButton))
+                        .addGap(10, 10, 10))
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(editVitalsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteVitalsButton))
-                    .addComponent(jScrollPane1))
+                        .addComponent(editVitalsButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -199,16 +181,13 @@ public class ViewPatient extends javax.swing.JPanel {
                             .addComponent(refreshButton)
                             .addComponent(backButton)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(deletePatientButton)
                         .addComponent(EditPatientButton)
                         .addComponent(addVitalsButton)
                         .addComponent(viewVitalsButton)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteVitalsButton)
-                    .addComponent(editVitalsButton))
+                .addComponent(editVitalsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
@@ -252,44 +231,26 @@ public class ViewPatient extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_viewVitalsButtonActionPerformed
 
-    private void deletePatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePatientButtonActionPerformed
-        // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPatients.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a Patient to delete it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPatients.getModel();
-//        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
-//
-//        patientDirectory.deletePatient(selectedPatient);
-//
-//        JOptionPane.showMessageDialog(this, "Selected Patient was deleted.");
-//        populateTable();
-    }//GEN-LAST:event_deletePatientButtonActionPerformed
-
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-//        PatientDetails addPatientDetails = new PatientDetails(SplitPane,patientDirectory,personDirectory,-1);
-//        SplitPane.setRightComponent(addPatientDetails);
+        PatientDetails addPatientDetails = new PatientDetails(splitPanel,patientDirectory,personDirectory,-1);
+        splitPanel.setRightComponent(addPatientDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void EditPatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditPatientButtonActionPerformed
         // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPatients.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a row to Edit it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPatients.getModel();
-//        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
-//
-//        EditPatient editPatient = new EditPatient(SplitPane,patientDirectory,personDirectory,selectedPatient.getPatientID());
-//        SplitPane.setRightComponent(editPatient);
+        int selectedRowIndex = viewPatientDetailsTable.getSelectedRow();
+
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row to Edit it.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
+        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
+
+        EditPatient editPatient = new EditPatient(splitPanel,patientDirectory,personDirectory,selectedPatient.getPatientId());
+        splitPanel.setRightComponent(editPatient);
     }//GEN-LAST:event_EditPatientButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
@@ -321,7 +282,7 @@ public class ViewPatient extends javax.swing.JPanel {
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
-//        populateTable();
+        populateTable();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void addVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsButtonActionPerformed
@@ -359,56 +320,6 @@ public class ViewPatient extends javax.swing.JPanel {
 //        SplitPane.setRightComponent(editVitals);
     }//GEN-LAST:event_editVitalsButtonActionPerformed
 
-    private void deleteVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVitalsButtonActionPerformed
-        // TODO add your handling code here:
-//        int selectedRowIndex = tblVitals.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a Vital to delete it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
-//        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
-//
-//        for(Patient p: patientDirectory.getPatientDirectory())
-//        {
-//            if(p.getPatientID()==selectedPatient.getPatientID())
-//            {
-//                Object[] row = new Object[6];
-//                for(Encounter e: p.getEH().getEncounterHistory())
-//                {
-//                    if(e.getBloodPressure() == (int) model.getValueAt(selectedRowIndex, 3) && e.getPulse() == (int) model.getValueAt(selectedRowIndex, 2) && e.getTemperature() == (int) model.getValueAt(selectedRowIndex, 4) && e.getUpdateTime().equals((String) model.getValueAt(selectedRowIndex, 5)))
-//                    {
-//                        p.getEH().deleteEncounter(e);
-//                    }
-//                }
-//            }
-//        }
-
-//        JOptionPane.showMessageDialog(this, "Selected Vital Signs was deleted.");
-//        model.setRowCount(0);
-//
-//        for(Patient p: patientDirectory.getPatientDirectory())
-//        {
-//            if(p.getPatientID()==selectedPatient.getPatientID())
-//            {
-//                Object[] row = new Object[6];
-//                for(Encounter e: p.getEH().getEncounterHistory())
-//                {
-//                    row[0]=p;
-//                    row[1]=p.getPatientID();
-//                    row[2]=e.getPulse();
-//                    row[3]=e.getBloodPressure();
-//                    row[4]=e.getTemperature();
-//                    row[5]=e.getUpdateTime();
-//
-//                    model.addRow(row);
-//                }
-//            }
-//        }
-    }//GEN-LAST:event_deleteVitalsButtonActionPerformed
-
 
      private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
@@ -436,8 +347,6 @@ public class ViewPatient extends javax.swing.JPanel {
     private javax.swing.JButton EditPatientButton;
     private javax.swing.JButton addVitalsButton;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton deletePatientButton;
-    private javax.swing.JButton deleteVitalsButton;
     private javax.swing.JButton editVitalsButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

@@ -4,6 +4,7 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 import model.PatientDirectory;
@@ -39,13 +40,7 @@ public class ViewPerson extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnDelete = new javax.swing.JButton();
-        btnView = new javax.swing.JButton();
-        btnGo = new javax.swing.JButton();
-        txtSearch = new javax.swing.JTextField();
-        btnRefresh = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
-        btnAddPatientID = new javax.swing.JButton();
+        genderRadioButtonGroup = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         viewPersonTable = new javax.swing.JTable();
         nameInput = new javax.swing.JTextField();
@@ -63,55 +58,12 @@ public class ViewPerson extends javax.swing.JPanel {
         maleRadioButton = new javax.swing.JRadioButton();
         otherRadioButton = new javax.swing.JRadioButton();
         femaleRadioButton = new javax.swing.JRadioButton();
-        deletePersonButton = new javax.swing.JButton();
         viewPersonButton = new javax.swing.JButton();
         searchButton = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
         refreshButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         addPatientButton = new javax.swing.JButton();
-
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        btnView.setText("View");
-        btnView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewActionPerformed(evt);
-            }
-        });
-
-        btnGo.setText("Go");
-        btnGo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGoActionPerformed(evt);
-            }
-        });
-
-        btnRefresh.setText("Refresh");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
-
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
-        btnAddPatientID.setText("Add as Patient");
-        btnAddPatientID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddPatientIDActionPerformed(evt);
-            }
-        });
 
         viewPersonTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,18 +112,14 @@ public class ViewPerson extends javax.swing.JPanel {
         communityLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         communityLabel.setText("Community:");
 
+        genderRadioButtonGroup.add(maleRadioButton);
         maleRadioButton.setText("Male");
 
+        genderRadioButtonGroup.add(otherRadioButton);
         otherRadioButton.setText("Other");
 
+        genderRadioButtonGroup.add(femaleRadioButton);
         femaleRadioButton.setText("Female");
-
-        deletePersonButton.setText("Delete");
-        deletePersonButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletePersonButtonActionPerformed(evt);
-            }
-        });
 
         viewPersonButton.setText("View");
         viewPersonButton.addActionListener(new java.awt.event.ActionListener() {
@@ -240,7 +188,7 @@ public class ViewPerson extends javax.swing.JPanel {
                                         .addComponent(femaleRadioButton)
                                         .addGap(18, 18, 18)
                                         .addComponent(otherRadioButton)))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 72, Short.MAX_VALUE))
                             .addComponent(nameInput)
                             .addComponent(communityInput))
                         .addGap(237, 237, 237))
@@ -250,33 +198,31 @@ public class ViewPerson extends javax.swing.JPanel {
                         .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addPatientButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(backButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(viewPersonButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deletePersonButton)
                         .addGap(10, 10, 10)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchButton)
                             .addComponent(addPatientButton)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(deletePersonButton)
-                        .addComponent(viewPersonButton)
-                        .addComponent(refreshButton)
-                        .addComponent(backButton)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(viewPersonButton)
+                            .addComponent(refreshButton)
+                            .addComponent(backButton))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -313,219 +259,130 @@ public class ViewPerson extends javax.swing.JPanel {
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
         // TODO add your handling code here:
-//        String Name = nameInput.getText();
-////        String Gender = txtGender.getText();
-//        String Residence = houseInput.getText();
-//        String City = cityInput.getText();
-//        int Age = Integer.parseInt(ageInput.getText());
-//        String Community = communityInput.getText();
-//
-//        int selectedRowIndex = tblViewPersons.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a row to view or update it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPersons.getModel();
-//
-//        model.setValueAt(Name, selectedRowIndex, 0);
-//        model.setValueAt(Age, selectedRowIndex, 1);
-//        model.setValueAt(Gender, selectedRowIndex, 2);
-//        model.setValueAt(Residence, selectedRowIndex, 3);
-//        model.setValueAt(City, selectedRowIndex, 4);
-//        model.setValueAt(Community, selectedRowIndex, 5);
-//
-//        int v=0;
-
-//        for(Person p: personDirectory.getPersonDirectory())
-//        {
-//            if(v == selectedRowIndex)
-//            {
-//                p.setName(Name);
-//                p.setAge(Age);
-//                p.setGender(Gender);
-//                p.setResidence(Residence);
-//                p.setCommunity(Community);
-//                p.setCity(City);
-//            }
-//            v++;
-//        }
-//
-//        JOptionPane.showMessageDialog(this,"Selected Person Details Updated.");
-//
-//        nameInput.setText("");
-//        ageInput.setText("");
-//        txtGender.setText("");
-//        houseInput.setText("");
-//        communityInput.setText("");
-//        cityInput.setText("");
+        maleRadioButton.setActionCommand("Male");
+        femaleRadioButton.setActionCommand("Female");
+        otherRadioButton.setActionCommand("Other");
+        String Name = nameInput.getText();
+        String Gender = genderRadioButtonGroup.getSelection().getActionCommand();
+        String Residence = houseInput.getText();
+        String City = cityInput.getText();
+        int Age = Integer.parseInt(ageInput.getText());
+        String Community = communityInput.getText();
+        
+        int selectedRowIndex = viewPersonTable.getSelectedRow();
+        
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row to view or update it.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) viewPersonTable.getModel();
+        
+        model.setValueAt(Name, selectedRowIndex, 0);
+        model.setValueAt(Age, selectedRowIndex, 1);
+        model.setValueAt(Gender, selectedRowIndex, 2);
+        model.setValueAt(Residence, selectedRowIndex, 3);
+        model.setValueAt(City, selectedRowIndex, 4);
+        model.setValueAt(Community, selectedRowIndex, 5);
+        
+        int v=0;
+        
+        for(Person p: personDirectory.getPersonDirectory())
+        {
+            if(v == selectedRowIndex)
+            {
+                p.setName(Name);
+                p.setAge(Age);
+                p.setGender(Gender);
+                p.setHouse(Residence);
+                p.setCommunity(Community);
+                p.setCity(City);
+            }
+            v++;
+        }    
+    
+    JOptionPane.showMessageDialog(this,"Selected Person Details Updated.");
+    
+    nameInput.setText("");
+    ageInput.setText("");
+    genderRadioButtonGroup.clearSelection();
+    houseInput.setText("");
+    communityInput.setText("");
+    cityInput.setText("");
     }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPersons.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a row to delete it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPersons.getModel();
-//        Person selectedPerson = (Person) model.getValueAt(selectedRowIndex, 0);
-//
-//        personDirectory.deletePerson(selectedPerson);
-//
-//        JOptionPane.showMessageDialog(this, "Selected Person was deleted.");
-//        populateTable();
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPersons.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a row to view or update it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPersons.getModel();
-//        Person selectedPerson = (Person) model.getValueAt(selectedRowIndex, 0);
-//
-//        txtName.setText(selectedPerson.getName());
-//        txtAge.setText(String.valueOf(selectedPerson.getAge()));
-//        txtGender.setText(selectedPerson.getGender());
-//        txtCity.setText(selectedPerson.getCity());
-//        txtResidence.setText(selectedPerson.getResidence());
-//        txtCommunity.setText(selectedPerson.getCommunity());
-    }//GEN-LAST:event_btnViewActionPerformed
-
-    private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
-        // TODO add your handling code here:
-//        String SearchString = txtSearch.getText();
-//        DefaultTableModel model = (DefaultTableModel) tblViewPersons.getModel();
-//        model.setRowCount(0);
-//
-//        for(Person p: personDirectory.getPersonDirectory())
-//        {
-//            System.out.println(SearchString);
-//            System.out.println(p.getName());
-//            if(p.getName().equals(SearchString))
-//            {
-//                Object[] row = new Object[6];
-//                row[0]=p;
-//                row[1]=p.getAge();
-//                row[2]=p.getGender();
-//                row[3]=p.getResidence();
-//                row[4]=p.getCity();
-//                row[5]=p.getCommunity();
-//
-//                model.addRow(row);
-//                break;
-//            }
-//        }
-    }//GEN-LAST:event_btnGoActionPerformed
-
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        // TODO add your handling code here:
-//        populateTable();
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-//        PersonDetails personDetails = new PersonDetails(SplitPane,personDirectory,patientDirectory);
-//        SplitPane.setRightComponent(personDetails);
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnAddPatientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPatientIDActionPerformed
-        // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPersons.getSelectedRow();
-//
-//        PatientDetails addPatientDetails = new PatientDetails(SplitPane,patientDirectory,personDirectory,selectedRowIndex);
-//        SplitPane.setRightComponent(addPatientDetails);
-    }//GEN-LAST:event_btnAddPatientIDActionPerformed
-
-    private void deletePersonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePersonButtonActionPerformed
-        // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPersons.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a row to delete it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPersons.getModel();
-//        Person selectedPerson = (Person) model.getValueAt(selectedRowIndex, 0);
-//
-//        personDirectory.deletePerson(selectedPerson);
-//
-//        JOptionPane.showMessageDialog(this, "Selected Person was deleted.");
-//        populateTable();
-    }//GEN-LAST:event_deletePersonButtonActionPerformed
 
     private void viewPersonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPersonButtonActionPerformed
         // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPersons.getSelectedRow();
-//
-//        if(selectedRowIndex<0)
-//        {
-//            JOptionPane.showMessageDialog(this, "Select a row to view or update it.");
-//            return;
-//        }
-//        DefaultTableModel model = (DefaultTableModel) tblViewPersons.getModel();
-//        Person selectedPerson = (Person) model.getValueAt(selectedRowIndex, 0);
-//
-//        txtName.setText(selectedPerson.getName());
-//        txtAge.setText(String.valueOf(selectedPerson.getAge()));
-//        txtGender.setText(selectedPerson.getGender());
-//        txtCity.setText(selectedPerson.getCity());
-//        txtResidence.setText(selectedPerson.getResidence());
-//        txtCommunity.setText(selectedPerson.getCommunity());
+        int selectedRowIndex = viewPersonTable.getSelectedRow();
+
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row to view or update it.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) viewPersonTable.getModel();
+        Person selectedPerson = (Person) model.getValueAt(selectedRowIndex, 0);
+
+        nameInput.setText(selectedPerson.getName());
+        ageInput.setText(String.valueOf(selectedPerson.getAge()));
+        switch (selectedPerson.getGender()) {
+            case "Male" -> {
+                maleRadioButton.setSelected(true);
+            }
+            case "Female" -> {
+                femaleRadioButton.setSelected(true);
+            }
+            default -> {
+                otherRadioButton.setSelected(true);
+            }
+        }
+        cityInput.setText(selectedPerson.getCity());
+        houseInput.setText(selectedPerson.getHouse());
+        communityInput.setText(selectedPerson.getCommunity());
     }//GEN-LAST:event_viewPersonButtonActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
-//        String SearchString = txtSearch.getText();
-//        DefaultTableModel model = (DefaultTableModel) tblViewPersons.getModel();
-//        model.setRowCount(0);
-//
-//        for(Person p: personDirectory.getPersonDirectory())
-//        {
-//            System.out.println(SearchString);
-//            System.out.println(p.getName());
-//            if(p.getName().equals(SearchString))
-//            {
-//                Object[] row = new Object[6];
-//                row[0]=p;
-//                row[1]=p.getAge();
-//                row[2]=p.getGender();
-//                row[3]=p.getResidence();
-//                row[4]=p.getCity();
-//                row[5]=p.getCommunity();
-//
-//                model.addRow(row);
-//                break;
-//            }
-//        }
+        String SearchString = searchInput.getText();
+        DefaultTableModel model = (DefaultTableModel) viewPersonTable.getModel();
+        model.setRowCount(0);
+
+        for(Person p: personDirectory.getPersonDirectory())
+        {
+            System.out.println(SearchString);
+            System.out.println(p.getName());
+            if(p.getName().equals(SearchString))
+            {
+                Object[] row = new Object[6];
+                row[0]=p;
+                row[1]=p.getAge();
+                row[2]=p.getGender();
+                row[3]=p.getHouse();
+                row[4]=p.getCity();
+                row[5]=p.getCommunity();
+
+                model.addRow(row);
+                break;
+            }
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         // TODO add your handling code here:
-//        populateTable();
+        populateTable();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-//        PersonDetails personDetails = new PersonDetails(SplitPane,personDirectory,patientDirectory);
-//        SplitPane.setRightComponent(personDetails);
+        PersonDetails personDetails = new PersonDetails(splitPanel,personDirectory,patientDirectory);
+        splitPanel.setRightComponent(personDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addPatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientButtonActionPerformed
         // TODO add your handling code here:
-//        int selectedRowIndex = tblViewPersons.getSelectedRow();
-//
-//        PatientDetails addPatientDetails = new PatientDetails(SplitPane,patientDirectory,personDirectory,selectedRowIndex);
-//        SplitPane.setRightComponent(addPatientDetails);
+        int selectedRowIndex = viewPersonTable.getSelectedRow();
+        PatientDetails addPatientDetails = new PatientDetails(splitPanel,patientDirectory,personDirectory,selectedRowIndex);
+        splitPanel.setRightComponent(addPatientDetails);
     }//GEN-LAST:event_addPatientButtonActionPerformed
 
 
@@ -551,19 +408,13 @@ public class ViewPerson extends javax.swing.JPanel {
     private javax.swing.JTextField ageInput;
     private javax.swing.JLabel ageLabel;
     private javax.swing.JButton backButton;
-    private javax.swing.JButton btnAddPatientID;
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnGo;
-    private javax.swing.JButton btnRefresh;
-    private javax.swing.JButton btnView;
     private javax.swing.JTextField cityInput;
     private javax.swing.JLabel cityLabel;
     private javax.swing.JTextField communityInput;
     private javax.swing.JLabel communityLabel;
-    private javax.swing.JButton deletePersonButton;
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JLabel genderLabel;
+    private javax.swing.ButtonGroup genderRadioButtonGroup;
     private javax.swing.JTextField houseInput;
     private javax.swing.JLabel houseLabel;
     private javax.swing.JScrollPane jScrollPane1;
@@ -574,7 +425,6 @@ public class ViewPerson extends javax.swing.JPanel {
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchInput;
-    private javax.swing.JTextField txtSearch;
     private javax.swing.JButton updateButton;
     private javax.swing.JButton viewPersonButton;
     private javax.swing.JTable viewPersonTable;
