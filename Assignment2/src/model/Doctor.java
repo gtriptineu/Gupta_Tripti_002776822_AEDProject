@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Lenovo
@@ -11,7 +13,7 @@ package model;
 public class Doctor extends Person{
     private int doctorID;
     private String password;
-    private PatientDirectory allPatients;
+    private ArrayList<PatientDirectory> allPatients = new ArrayList();
 
     public int getDoctorID() {
         return doctorID;
@@ -21,11 +23,11 @@ public class Doctor extends Person{
         this.doctorID = doctorID;
     }
 
-    public PatientDirectory getAllPatients() {
+    public ArrayList<PatientDirectory> getAllPatients() {
         return allPatients;
     }
 
-    public void setAllPatients(PatientDirectory allPatients) {
+    public void setAllPatients(ArrayList<PatientDirectory> allPatients) {
         this.allPatients = allPatients;
     }
 

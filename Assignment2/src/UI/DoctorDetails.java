@@ -16,23 +16,26 @@ import model.PersonDirectory;
  * @author Lenovo
  */
 public class DoctorDetails extends javax.swing.JPanel {
-    
+    DoctorDirectory doctorDirectory;
     private JSplitPane splitPanel;
-    private PersonDirectory personDirectory;
-    private DoctorDirectory doctorDirectory;
+    PersonDirectory personDirectory;
     private int selectedRowIndex;
     String initialName;
     int initialAge;
     String initialGender;
-    
+
     /**
      * Creates new form DoctorDetails
+     * @param splitPanel
+     * @param doctorDirectory
+     * @param personDirectory
+     * @param selectedRowIndex
      */
-    public DoctorDetails( JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory, int selectedRowIndex) {
+    public DoctorDetails(JSplitPane splitPanel, DoctorDirectory doctorDirectory, PersonDirectory personDirectory,int selectedRowIndex) {
         initComponents();
         this.splitPanel = splitPanel;
-        this.personDirectory = personDirectoy;
         this.doctorDirectory = doctorDirectory;
+        this.personDirectory = personDirectory;
         this.selectedRowIndex = selectedRowIndex;
         maleRadioButton.setActionCommand("Male");
         femaleRadioButton.setActionCommand("Female");
@@ -76,27 +79,57 @@ public class DoctorDetails extends javax.swing.JPanel {
     private void initComponents() {
 
         genderRadioButtonGroup = new javax.swing.ButtonGroup();
+        doctorHeadingLabel = new javax.swing.JLabel();
+        genderLabel = new javax.swing.JLabel();
+        houseLabel = new javax.swing.JLabel();
+        communityLabel = new javax.swing.JLabel();
+        cityLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        ageLabel = new javax.swing.JLabel();
+        ageInput = new javax.swing.JTextField();
+        nameInput = new javax.swing.JTextField();
+        houseInput = new javax.swing.JTextField();
+        communityInput = new javax.swing.JTextField();
+        otherRadioButton = new javax.swing.JRadioButton();
+        cityInput = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
         loginButton = new javax.swing.JButton();
         maleRadioButton = new javax.swing.JRadioButton();
         femaleRadioButton = new javax.swing.JRadioButton();
-        genderLabel = new javax.swing.JLabel();
         doctorIdLabel = new javax.swing.JLabel();
-        houseLabel = new javax.swing.JLabel();
-        ageInput = new javax.swing.JTextField();
         doctorIdInput = new javax.swing.JTextField();
-        communityLabel = new javax.swing.JLabel();
-        nameInput = new javax.swing.JTextField();
-        doctorHeadingLabel = new javax.swing.JLabel();
-        cityLabel = new javax.swing.JLabel();
-        houseInput = new javax.swing.JTextField();
-        nameLabel = new javax.swing.JLabel();
-        communityInput = new javax.swing.JTextField();
-        ageLabel = new javax.swing.JLabel();
-        otherRadioButton = new javax.swing.JRadioButton();
-        cityInput = new javax.swing.JTextField();
-        doctorIdLabel1 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         passwordInput = new javax.swing.JPasswordField();
+
+        doctorHeadingLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        doctorHeadingLabel.setText("Doctor Details");
+
+        genderLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        genderLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        genderLabel.setText("Gender:");
+
+        houseLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        houseLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        houseLabel.setText("House:");
+
+        communityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        communityLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        communityLabel.setText("Community:");
+
+        cityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cityLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cityLabel.setText("City:");
+
+        nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        nameLabel.setText("Name:");
+
+        ageLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ageLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ageLabel.setText("Age:");
+
+        genderRadioButtonGroup.add(otherRadioButton);
+        otherRadioButton.setText("Other");
 
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,43 +151,13 @@ public class DoctorDetails extends javax.swing.JPanel {
         genderRadioButtonGroup.add(femaleRadioButton);
         femaleRadioButton.setText("Female");
 
-        genderLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        genderLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        genderLabel.setText("Gender:");
-
         doctorIdLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         doctorIdLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         doctorIdLabel.setText("Doctor ID:");
 
-        houseLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        houseLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        houseLabel.setText("House:");
-
-        communityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        communityLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        communityLabel.setText("Community:");
-
-        doctorHeadingLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        doctorHeadingLabel.setText("Doctor Registration Details");
-
-        cityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cityLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cityLabel.setText("City:");
-
-        nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        nameLabel.setText("Name:");
-
-        ageLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ageLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        ageLabel.setText("Age:");
-
-        genderRadioButtonGroup.add(otherRadioButton);
-        otherRadioButton.setText("Other");
-
-        doctorIdLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        doctorIdLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        doctorIdLabel1.setText("Password:");
+        passwordLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        passwordLabel.setText("Password:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -163,15 +166,8 @@ public class DoctorDetails extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(maleRadioButton)
-                        .addGap(53, 53, 53)
-                        .addComponent(femaleRadioButton)
-                        .addGap(51, 51, 51)
-                        .addComponent(otherRadioButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(205, 205, 205)
-                        .addComponent(doctorHeadingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(doctorHeadingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,18 +188,25 @@ public class DoctorDetails extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(communityLabel)
                                     .addComponent(doctorIdLabel)
-                                    .addComponent(doctorIdLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(passwordLabel))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(doctorIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(communityInput, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(doctorIdInput, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                                    .addComponent(communityInput, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                                    .addComponent(passwordInput)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
+                        .addGap(136, 136, 136)
+                        .addComponent(maleRadioButton)
+                        .addGap(53, 53, 53)
+                        .addComponent(femaleRadioButton)
+                        .addGap(51, 51, 51)
+                        .addComponent(otherRadioButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(187, 187, 187)
                         .addComponent(saveButton)
-                        .addGap(52, 52, 52)
+                        .addGap(39, 39, 39)
                         .addComponent(loginButton)))
-                .addContainerGap(385, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +235,7 @@ public class DoctorDetails extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cityLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cityInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(communityLabel)
                     .addComponent(communityInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -240,27 +243,21 @@ public class DoctorDetails extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(doctorIdLabel)
                     .addComponent(doctorIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(doctorIdLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(66, 66, 66)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLabel)
+                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(loginButton))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-        maleRadioButton.setActionCommand("Male");
-        femaleRadioButton.setActionCommand("Female");
-        otherRadioButton.setActionCommand("Other");
-        if(nameInput.getText().equals(""))
+       if(nameInput.getText().equals(""))
        {
            JOptionPane.showMessageDialog(this, "Name Feild is empty");
        }
@@ -288,7 +285,7 @@ public class DoctorDetails extends javax.swing.JPanel {
        {
         JOptionPane.showMessageDialog(this, "Doctor ID Feild is empty");
        }
-       else if(new String(passwordInput.getPassword()).equals(""))
+       else if(passwordInput.getPassword().equals(""))
        {
         JOptionPane.showMessageDialog(this, "Password Feild is empty");
        }
@@ -304,55 +301,62 @@ public class DoctorDetails extends javax.swing.JPanel {
        {
         JOptionPane.showMessageDialog(this, "Doctor ID Entered should be Integer");
        }
+       
+       else if(!(initialName.equals(nameInput.getText())) || !(initialGender.equals(genderRadioButtonGroup.getSelection().getActionCommand())) || (initialAge!=Integer.parseInt(ageInput.getText())))
+       {
+           JOptionPane.showMessageDialog(this, "Current values don't match the initial values");
+       }
        else
         {
         int t=0;
-            for(Doctor dt: doctorDirectory.getDoctorDirectory()) {
-            if(dt.getDoctorID()==Integer.parseInt(doctorIdInput.getText()))
+        for(Doctor pt: doctorDirectory.getDoctorDirectory())
+        {
+            if(pt.getDoctorID()==Integer.parseInt(doctorIdInput.getText()))
                 t++;
-            }
+        }
         if(t==0)
         {
-            String name = nameInput.getText();
-            int age = Integer.parseInt(ageInput.getText());
-            String gender = genderRadioButtonGroup.getSelection().getActionCommand();
-            String house = houseInput.getText();
-            String city = cityInput.getText();
-            String community = communityInput.getText();
-            String password = String.valueOf(passwordInput.getPassword());
-            int doctorId = Integer.parseInt(doctorIdInput.getText());
+        String name = nameInput.getText();
+        int age = Integer.parseInt(ageInput.getText());
+        String gender = genderRadioButtonGroup.getSelection().getActionCommand();
+        String house = houseInput.getText();
+        String city = cityInput.getText();
+        String community = communityInput.getText();
+        String password = String.valueOf(passwordInput.getPassword());
+        int doctorId = Integer.parseInt(doctorIdInput.getText());
         
-            Doctor d = doctorDirectory.addNewDoctor();
-            d.setName(name);
-            d.setAge(age);
-            d.setGender(gender);
-            d.setHouse(house);
-            d.setCity(city);
-            d.setCommunity(community);
-            d.setDoctorID(doctorId);
-            d.setPassword(password);
-
-            JOptionPane.showMessageDialog(this, "Doctor Details Saved");
-
-            nameInput.setText("");
-            ageInput.setText("");
-            genderRadioButtonGroup.clearSelection();
-            houseInput.setText("");
-            cityInput.setText("");
-            communityInput.setText("");
-            doctorIdInput.setText("");
+        Doctor p = doctorDirectory.addNewDoctor();
+        p.setName(name);
+        p.setAge(age);
+        p.setGender(gender);
+        p.setHouse(house);
+        p.setCity(city);
+        p.setCommunity(community);
+        p.setDoctorID(doctorId);
+        p.setPassword(password);
+        
+        JOptionPane.showMessageDialog(this, "Doctor Details Saved");
+        
+        nameInput.setText("");
+        ageInput.setText("");
+        genderRadioButtonGroup.clearSelection();
+        houseInput.setText("");
+        cityInput.setText("");
+        communityInput.setText("");
+        doctorIdInput.setText("");
+        passwordInput.setText("");
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "This Doctor ID is already used");
+            JOptionPane.showMessageDialog(this, "This doctor ID is already used");
         }
         }
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        DoctorLogin loginDoctor = new DoctorLogin(splitPanel, personDirectory, doctorDirectory);
-        splitPanel.setRightComponent(loginDoctor);
+        DoctorLogin doctorLogin = new DoctorLogin(splitPanel,personDirectory, doctorDirectory);
+        splitPanel.setRightComponent(doctorLogin);
     }//GEN-LAST:event_loginButtonActionPerformed
 
 
@@ -366,7 +370,7 @@ public class DoctorDetails extends javax.swing.JPanel {
     }
     // only got here if we didn't return false
     return true;
-}
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageInput;
@@ -378,7 +382,6 @@ public class DoctorDetails extends javax.swing.JPanel {
     private javax.swing.JLabel doctorHeadingLabel;
     private javax.swing.JTextField doctorIdInput;
     private javax.swing.JLabel doctorIdLabel;
-    private javax.swing.JLabel doctorIdLabel1;
     private javax.swing.JRadioButton femaleRadioButton;
     private javax.swing.JLabel genderLabel;
     private javax.swing.ButtonGroup genderRadioButtonGroup;
@@ -390,6 +393,7 @@ public class DoctorDetails extends javax.swing.JPanel {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JRadioButton otherRadioButton;
     private javax.swing.JPasswordField passwordInput;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }

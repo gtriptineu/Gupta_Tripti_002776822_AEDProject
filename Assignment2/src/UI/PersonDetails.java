@@ -4,8 +4,15 @@
  */
 package UI;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.DoctorDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -22,11 +29,13 @@ public class PersonDetails extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     private JSplitPane splitPanel;
     PatientDirectory patientDirectory;
-    public PersonDetails(JSplitPane SplitPanel, PersonDirectory personDirectory, PatientDirectory patientDirectory) {
+    DoctorDirectory doctorDirectory;
+    public PersonDetails(JSplitPane SplitPanel, PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory) {
         initComponents();
         this.personDirectory = personDirectory;
         this.splitPanel = SplitPanel;
         this.patientDirectory = patientDirectory;
+        this.doctorDirectory = doctorDirectory;
     }
 
     /**
@@ -56,6 +65,7 @@ public class PersonDetails extends javax.swing.JPanel {
         saveButton = new javax.swing.JButton();
         viewButton = new javax.swing.JButton();
         otherRadioButton = new javax.swing.JRadioButton();
+        importButton = new javax.swing.JButton();
 
         personLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         personLabel.setText("Person Details");
@@ -107,6 +117,13 @@ public class PersonDetails extends javax.swing.JPanel {
         genderRadioGroup.add(otherRadioButton);
         otherRadioButton.setText("Other");
 
+        importButton.setText("Import");
+        importButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,7 +157,9 @@ public class PersonDetails extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(saveButton)
                                 .addGap(37, 37, 37)
-                                .addComponent(viewButton)))))
+                                .addComponent(viewButton)
+                                .addGap(58, 58, 58)
+                                .addComponent(importButton)))))
                 .addContainerGap(159, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -183,7 +202,8 @@ public class PersonDetails extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
-                    .addComponent(viewButton))
+                    .addComponent(viewButton)
+                    .addComponent(importButton))
                 .addContainerGap(74, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -261,9 +281,45 @@ public class PersonDetails extends javax.swing.JPanel {
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         // TODO add your handling code here:
-        ViewPerson viewPersonDetails = new ViewPerson(splitPanel, personDirectory,patientDirectory);
+        ViewPerson viewPersonDetails = new ViewPerson(splitPanel, personDirectory,patientDirectory, doctorDirectory);
         splitPanel.setRightComponent(viewPersonDetails);
     }//GEN-LAST:event_viewButtonActionPerformed
+
+    private void importButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importButtonActionPerformed
+        // TODO add your handling code here:
+        JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = file.showSaveDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            File selectedFile = file.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+   //         String path = "C:\\Users\\bhuva\\OneDrive\\Desktop\\Java Assignment 1 photos\\Car Datacsv.csv";
+            String line = "";
+            try{
+                BufferedReader br = new BufferedReader(new FileReader(path));
+                while ((line = br.readLine()) != null) {
+                    String [] values = line.split(",");   
+                    String Name = String.valueOf(values[0]);
+                    int Age = Integer.parseInt(String.valueOf(values[1]));
+                    String Gender = String.valueOf(values[2]);
+                    String house = String.valueOf(values[3]);
+                    String City = String.valueOf(values[4]);
+                    String Community = String.valueOf(values[5]);
+                    Person pr = personDirectory.addNewPerson();
+                    pr.setName(Name);
+                    pr.setAge(Age);
+                    pr.setGender(Gender);
+                    pr.setHouse(house);
+                    pr.setCity(City);
+                    pr.setCommunity(Community);
+                }
+            } catch(FileNotFoundException e){
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+                }
+        }
+    }//GEN-LAST:event_importButtonActionPerformed
 
     private static boolean isInteger(String s) {
     try { 
@@ -289,6 +345,7 @@ public class PersonDetails extends javax.swing.JPanel {
     private javax.swing.ButtonGroup genderRadioGroup;
     private javax.swing.JTextField houseInput;
     private javax.swing.JLabel houseLabel;
+    private javax.swing.JButton importButton;
     private javax.swing.JRadioButton maleRadioButton;
     private javax.swing.JTextField nameInput;
     private javax.swing.JLabel nameLabel;

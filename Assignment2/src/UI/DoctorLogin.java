@@ -4,7 +4,9 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.Doctor;
 import model.DoctorDirectory;
 import model.PersonDirectory;
 
@@ -106,7 +108,26 @@ public class DoctorLogin extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        System.out.println(this.doctorDirectory);
+        int userId = Integer.parseInt(usernameInput.getText());
+        String pass = String.valueOf(passwordInput.getPassword());
+        int usernameMatch = 0;
+        int passMatch = 0;
+        for(Doctor d: doctorDirectory.getDoctorDirectory()){
+            System.out.println("doc--" + d);
+            if(d.getDoctorID() == userId){
+                usernameMatch = 1;
+                if(d.getPassword().equals(pass)){
+                    passMatch=1;
+                    ViewDoctor viewDoctor = new ViewDoctor();
+                    splitPanel.setRightComponent(viewDoctor);
+                }
+            }
+        }
+        if(usernameMatch == 0){
+            JOptionPane.showMessageDialog(this, "UserId Entered is Incorrect");
+        } else if(passMatch==0){
+            JOptionPane.showMessageDialog(this, "Password Entered is Incorrect");
+        }
     }//GEN-LAST:event_loginButtonActionPerformed
 
 

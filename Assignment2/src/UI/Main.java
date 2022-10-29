@@ -133,7 +133,7 @@ public class Main extends javax.swing.JFrame {
 
     private void personButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personButtonActionPerformed
         // TODO add your handling code here:
-        PersonDetails addPersonDetails = new PersonDetails(splitPanel, personDirectory, patientDirectory);
+        PersonDetails addPersonDetails = new PersonDetails(splitPanel, personDirectory, patientDirectory, doctorDirectory);
         splitPanel.setRightComponent(addPersonDetails);
     }//GEN-LAST:event_personButtonActionPerformed
 

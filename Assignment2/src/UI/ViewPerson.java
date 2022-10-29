@@ -25,11 +25,12 @@ public class ViewPerson extends javax.swing.JPanel {
     /**
      * Creates new form ViewPerson
      */
-    public ViewPerson(JSplitPane splitPanel,PersonDirectory personDirectory,PatientDirectory patientDirectory) {
+    public ViewPerson(JSplitPane splitPanel,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory) {
         initComponents();
         this.personDirectory = personDirectory;
         this.splitPanel = splitPanel;
         this.patientDirectory = patientDirectory;
+        this.doctorDirectory = doctorDirectory;
         populateTable();
     }
 
@@ -387,7 +388,7 @@ public class ViewPerson extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        PersonDetails personDetails = new PersonDetails(splitPanel,personDirectory,patientDirectory);
+        PersonDetails personDetails = new PersonDetails(splitPanel,personDirectory,patientDirectory, doctorDirectory);
         splitPanel.setRightComponent(personDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 
@@ -401,7 +402,7 @@ public class ViewPerson extends javax.swing.JPanel {
     private void addDoctorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoctorButtonActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = viewPersonTable.getSelectedRow();
-        DoctorDetails addDoctorDetails = new DoctorDetails(splitPanel,personDirectory,doctorDirectory, selectedRowIndex);
+        DoctorDetails addDoctorDetails = new DoctorDetails(splitPanel,doctorDirectory,personDirectory, selectedRowIndex);
         splitPanel.setRightComponent(addDoctorDetails);
     }//GEN-LAST:event_addDoctorButtonActionPerformed
 
