@@ -250,7 +250,7 @@ public class ViewPatient extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
         Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
 
-        EditPatient editPatient = new EditPatient(splitPanel,patientDirectory,personDirectory,selectedPatient.getPatientId());
+        EditPatient editPatient = new EditPatient(splitPanel,patientDirectory,personDirectory,selectedPatient.getPatientId(), selectedRowIndex);
         splitPanel.setRightComponent(editPatient);
     }//GEN-LAST:event_EditPatientButtonActionPerformed
 

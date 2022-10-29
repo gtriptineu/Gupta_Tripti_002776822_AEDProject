@@ -4,10 +4,12 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 import model.Doctor;
 import model.DoctorDirectory;
+import model.Patient;
 import model.PatientDirectory;
 import model.PersonDirectory;
 
@@ -47,6 +49,7 @@ public class ViewDoctor extends javax.swing.JPanel {
         viewDoctorTable = new javax.swing.JTable();
         doctorHeading = new javax.swing.JLabel();
         viewPatientDetailsButton = new javax.swing.JButton();
+        editDoctorDetails = new javax.swing.JButton();
 
         viewDoctorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,20 +74,31 @@ public class ViewDoctor extends javax.swing.JPanel {
             }
         });
 
+        editDoctorDetails.setText("Edit Doctor Details");
+        editDoctorDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editDoctorDetailsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(viewPatientDetailsButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(345, 345, 345)
-                            .addComponent(doctorHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(doctorHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(viewPatientDetailsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editDoctorDetails)
+                        .addGap(3, 3, 3)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,9 +108,11 @@ public class ViewDoctor extends javax.swing.JPanel {
                 .addComponent(doctorHeading)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(viewPatientDetailsButton)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewPatientDetailsButton)
+                    .addComponent(editDoctorDetails))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -105,6 +121,22 @@ public class ViewDoctor extends javax.swing.JPanel {
         ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory);
         splitPanel.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_viewPatientDetailsButtonActionPerformed
+
+    private void editDoctorDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editDoctorDetailsActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex =viewDoctorTable.getSelectedRow();
+
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row to Edit it.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) viewDoctorTable.getModel();
+        Doctor selectedDoctor = (Doctor) model.getValueAt(selectedRowIndex, 0);
+
+        EditDoctor editDoctor = new EditDoctor(splitPanel,doctorDirectory,personDirectory,selectedDoctor.getDoctorID(), patientDirectory);
+        splitPanel.setRightComponent(editDoctor);
+    }//GEN-LAST:event_editDoctorDetailsActionPerformed
 
 
     private void populateTable() {
@@ -126,6 +158,7 @@ public class ViewDoctor extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel doctorHeading;
+    private javax.swing.JButton editDoctorDetails;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable viewDoctorTable;
     private javax.swing.JButton viewPatientDetailsButton;
