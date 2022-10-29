@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.Doctor;
 import model.DoctorDirectory;
+import model.PatientDirectory;
 import model.PersonDirectory;
 
 /**
@@ -18,16 +19,18 @@ public class DoctorLogin extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     private PersonDirectory personDirectory;
     private DoctorDirectory doctorDirectory;
+    PatientDirectory patientDirctory;
     
 
     /**
      * Creates new form DoctorLogin
      */
-    public DoctorLogin(JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory) {
+    public DoctorLogin(JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory, PatientDirectory patientDirctory) {
         initComponents();
         this.splitPanel = splitPanel;
         this.personDirectory = personDirectoy;
         this.doctorDirectory = doctorDirectory;
+        this.patientDirctory = patientDirctory;
     }
 
     /**
@@ -118,7 +121,7 @@ public class DoctorLogin extends javax.swing.JPanel {
                 usernameMatch = 1;
                 if(d.getPassword().equals(pass)){
                     passMatch=1;
-                    ViewDoctor viewDoctor = new ViewDoctor();
+                    ViewDoctor viewDoctor = new ViewDoctor(splitPanel, personDirectory, doctorDirectory, patientDirctory);
                     splitPanel.setRightComponent(viewDoctor);
                 }
             }

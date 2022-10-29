@@ -402,7 +402,7 @@ public class ViewPerson extends javax.swing.JPanel {
     private void addDoctorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoctorButtonActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = viewPersonTable.getSelectedRow();
-        DoctorDetails addDoctorDetails = new DoctorDetails(splitPanel,doctorDirectory,personDirectory, selectedRowIndex);
+        DoctorDetails addDoctorDetails = new DoctorDetails(splitPanel,doctorDirectory,personDirectory, selectedRowIndex, patientDirectory);
         splitPanel.setRightComponent(addDoctorDetails);
     }//GEN-LAST:event_addDoctorButtonActionPerformed
 

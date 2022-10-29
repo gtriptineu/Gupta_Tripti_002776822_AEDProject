@@ -4,17 +4,34 @@
  */
 package UI;
 
+import javax.swing.JSplitPane;
+import javax.swing.table.DefaultTableModel;
+import model.Doctor;
+import model.DoctorDirectory;
+import model.PatientDirectory;
+import model.PersonDirectory;
+
 /**
  *
  * @author Lenovo
  */
 public class ViewDoctor extends javax.swing.JPanel {
+    private JSplitPane splitPanel;
+    PersonDirectory personDirectory;
+    DoctorDirectory doctorDirectory;
+    PatientDirectory patientDirectory;
 
     /**
      * Creates new form ViewDoctor
      */
-    public ViewDoctor() {
+    public ViewDoctor(JSplitPane splitPanel, PersonDirectory personDirectory, DoctorDirectory doctorDirectory, PatientDirectory patientDirctory) {
         initComponents();
+        this.personDirectory = personDirectory;
+        this.splitPanel = splitPanel;
+        this.doctorDirectory = doctorDirectory;
+        this.patientDirectory = patientDirctory;
+        System.out.println("in view doctor--" + patientDirctory);
+        populateTable();
     }
 
     /**
@@ -27,42 +44,90 @@ public class ViewDoctor extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        viewDoctorTable = new javax.swing.JTable();
+        doctorHeading = new javax.swing.JLabel();
+        viewPatientDetailsButton = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        viewDoctorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Age", "Gender", "Hospital Name", "Community", "City"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(viewDoctorTable);
+
+        doctorHeading.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        doctorHeading.setText("Doctor Details");
+
+        viewPatientDetailsButton.setText("View Patient Details");
+        viewPatientDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPatientDetailsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewPatientDetailsButton)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(345, 345, 345)
+                            .addComponent(doctorHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(19, 19, 19)
+                .addComponent(doctorHeading)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(viewPatientDetailsButton)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void viewPatientDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPatientDetailsButtonActionPerformed
+        // TODO add your handling code here:
+        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory);
+        splitPanel.setRightComponent(viewPatientDetails);
+    }//GEN-LAST:event_viewPatientDetailsButtonActionPerformed
 
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) viewDoctorTable.getModel();
+         model.setRowCount(0);
+         
+         for(Doctor p: doctorDirectory.getDoctorDirectory())
+         {
+             Object[] row = new Object[6];
+             row[0]=p;
+             row[1]=p.getAge();
+             row[2]=p.getGender();
+             row[3]=p.getHospitalName();
+             row[4]=p.getCommunity();
+             row[5]=p.getCity();
+             
+             model.addRow(row);
+         }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel doctorHeading;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable viewDoctorTable;
+    private javax.swing.JButton viewPatientDetailsButton;
     // End of variables declaration//GEN-END:variables
 }

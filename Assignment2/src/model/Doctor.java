@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Doctor extends Person{
     private int doctorID;
     private String password;
+    private String hospitalName;
     private ArrayList<PatientDirectory> allPatients = new ArrayList();
 
     public int getDoctorID() {
@@ -37,6 +38,14 @@ public class Doctor extends Person{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getHospitalName() {
+        return hospitalName;
+    }
+
+    public void setHospitalName(String hospitalName) {
+        this.hospitalName = hospitalName;
     }
     
 }
