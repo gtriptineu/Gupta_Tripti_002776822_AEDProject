@@ -127,7 +127,7 @@ public class DoctorLogin extends javax.swing.JPanel {
                 usernameMatch = 1;
                 if(d.getPassword().equals(pass)){
                     passMatch=1;
-                    ViewDoctor viewDoctor = new ViewDoctor(splitPanel, personDirectory, doctorDirectory, patientDirctory, hospitalDirectory, null, null);
+                    ViewDoctor viewDoctor = new ViewDoctor(splitPanel, personDirectory, doctorDirectory, patientDirctory, hospitalDirectory, null, null, userId);
                     splitPanel.setRightComponent(viewDoctor);
                 }
             }

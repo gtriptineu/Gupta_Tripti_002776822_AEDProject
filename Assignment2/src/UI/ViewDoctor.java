@@ -30,9 +30,12 @@ public class ViewDoctor extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewDoctor
+     * @param patient
+     * @param userId
      */
     public ViewDoctor(JSplitPane splitPanel, PersonDirectory personDirectory, DoctorDirectory doctorDirectory,
-            PatientDirectory patientDirctory, HospitalDirectory hospitalDirectory, Hospital hospital, Patient patient ) {
+            PatientDirectory patientDirctory, HospitalDirectory hospitalDirectory, Hospital hospital,
+            Patient patient, int userId ) {
         initComponents();
         this.personDirectory = personDirectory;
         this.splitPanel = splitPanel;
@@ -49,6 +52,26 @@ public class ViewDoctor extends javax.swing.JPanel {
             for(Doctor p: doctorDirectory.getDoctorDirectory())
             {
                 if(p.getHospitalName().equals(hospName))
+                {
+                    Object[] row = new Object[6];
+                    row[0]=p;
+                    row[1]=p.getAge();
+                    row[2]=p.getGender();
+                    row[3]=p.getHospitalName();
+                    row[4]=p.getCommunity();
+                    row[5]=p.getCity();
+
+                    model.addRow(row);
+                    break;
+                }
+            }
+        } else if(userId>0){
+            DefaultTableModel model = (DefaultTableModel) viewDoctorTable.getModel();
+            model.setRowCount(0);
+
+            for(Doctor p: doctorDirectory.getDoctorDirectory())
+            {
+                if(p.getDoctorID() == userId)
                 {
                     Object[] row = new Object[6];
                     row[0]=p;
@@ -144,9 +167,6 @@ public class ViewDoctor extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(345, 345, 345)
-                        .addComponent(doctorHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -163,23 +183,26 @@ public class ViewDoctor extends javax.swing.JPanel {
                                     .addComponent(viewPatientDetailsButton)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(editDoctorDetails)
-                                    .addGap(3, 3, 3))))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                                    .addGap(3, 3, 3)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(346, 346, 346)
+                        .addComponent(doctorHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(doctorHeading)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(searchButton))
                     .addComponent(refreshButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewPatientDetailsButton)
                     .addComponent(editDoctorDetails)
@@ -244,21 +267,25 @@ public class ViewDoctor extends javax.swing.JPanel {
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = viewDoctorTable.getSelectedRow();
+        if (patient != null && hospital != null){
+            int selectedRowIndex = viewDoctorTable.getSelectedRow();
 
-        if(selectedRowIndex<0)
-        {
-            JOptionPane.showMessageDialog(this, "Select a row to confirm an appointment.");
-            return;
+            if(selectedRowIndex<0)
+            {
+                JOptionPane.showMessageDialog(this, "Select a row to confirm an appointment.");
+                return;
+            }
+            DefaultTableModel model = (DefaultTableModel) viewDoctorTable.getModel();
+            int doctorSelectedIndex = viewDoctorTable.getSelectedRow();
+            Doctor selectedPatient = (Doctor) model.getValueAt(doctorSelectedIndex, 0);
+            patient.setAppBooked(true);
+            JOptionPane.showConfirmDialog(this, "Booking Confirmed!");
+
+            ViewPatient viewPatient = new ViewPatient(splitPanel,patientDirectory,personDirectory,hospitalDirectory,doctorDirectory);
+            splitPanel.setRightComponent(viewPatient);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please go to View Patients to book an appointment.");
         }
-        DefaultTableModel model = (DefaultTableModel) viewDoctorTable.getModel();
-        int doctorSelectedIndex = viewDoctorTable.getSelectedRow();
-        Doctor selectedPatient = (Doctor) model.getValueAt(doctorSelectedIndex, 0);
-        patient.setAppBooked(true);
-        JOptionPane.showConfirmDialog(this, "Booking Confirmed!");
-
-        ViewPatient viewPatient = new ViewPatient(splitPanel,patientDirectory,personDirectory,hospitalDirectory,doctorDirectory);
-        splitPanel.setRightComponent(viewPatient);
     }//GEN-LAST:event_confirmButtonActionPerformed
 
 

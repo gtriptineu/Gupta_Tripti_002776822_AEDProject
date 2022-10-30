@@ -408,7 +408,7 @@ public class EditDoctor extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        ViewDoctor viewPatientDetails = new ViewDoctor(splitPanel,personDirectory,doctorDirectory,patientDirectory, hospitalDirectory, null, null);
+        ViewDoctor viewPatientDetails = new ViewDoctor(splitPanel,personDirectory,doctorDirectory,patientDirectory, hospitalDirectory, null, null, -1);
         splitPanel.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 

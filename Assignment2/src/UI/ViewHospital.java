@@ -102,13 +102,9 @@ public class ViewHospital extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(253, 253, 253)
-                            .addComponent(viewHospHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -120,13 +116,17 @@ public class ViewHospital extends javax.swing.JPanel {
                                 .addComponent(refreshButton))
                             .addComponent(docDetailsButton))))
                 .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(viewHospHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(270, 270, 270))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(18, 18, 18)
                 .addComponent(viewHospHeading)
-                .addGap(19, 19, 19)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton)
@@ -172,20 +172,23 @@ public class ViewHospital extends javax.swing.JPanel {
 
     private void docDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docDetailsButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = viewHospTable.getSelectedRow();
+        if( patient != null){
+            int selectedRowIndex = viewHospTable.getSelectedRow();
 
-        if(selectedRowIndex<0)
-        {
-            JOptionPane.showMessageDialog(this, "Select a row to view Doctor details.");
-            return;
+            if(selectedRowIndex<0)
+            {
+                JOptionPane.showMessageDialog(this, "Select a row to view Doctor details.");
+                return;
+            }
+            DefaultTableModel model = (DefaultTableModel) viewHospTable.getModel();
+            int hospitalSelectedIndex = viewHospTable.getSelectedRow();
+            Hospital selectedHospital = (Hospital) model.getValueAt(hospitalSelectedIndex, 0);
+            ViewDoctor viewDoctor = new ViewDoctor(splitPanel,personDirectory, doctorDirectory,patientDirectory,
+                hospitalDirectory,selectedHospital, patient, -1);
+            splitPanel.setRightComponent(viewDoctor);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please go back to View Patient to select patient.");
         }
-        DefaultTableModel model = (DefaultTableModel) viewHospTable.getModel();
-        int hospitalSelectedIndex = viewHospTable.getSelectedRow();
-        Hospital selectedHospital = (Hospital) model.getValueAt(hospitalSelectedIndex, 0);
-
-        ViewDoctor viewDoctor = new ViewDoctor(splitPanel,personDirectory, doctorDirectory,patientDirectory,
-                hospitalDirectory,selectedHospital, patient);
-        splitPanel.setRightComponent(viewDoctor);
     }//GEN-LAST:event_docDetailsButtonActionPerformed
 
     private void populateTable() {
