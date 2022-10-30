@@ -6,6 +6,8 @@ package UI;
 
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.Person;
@@ -19,6 +21,8 @@ public class PatientDetails extends javax.swing.JPanel {
     PatientDirectory patientDirectory;
     private JSplitPane splitPanel;
     PersonDirectory personDirectory;
+    HospitalDirectory hospitalDirectory;
+    DoctorDirectory doctorDirectory;
     private int selectedRowIndex;
     String initialName;
     int initialAge;
@@ -31,12 +35,15 @@ public class PatientDetails extends javax.swing.JPanel {
      * @param personDirectory
      * @param selectedRowIndex
      */
-    public PatientDetails(JSplitPane splitPanel, PatientDirectory patientDirectory, PersonDirectory personDirectory,int selectedRowIndex) {
+    public PatientDetails(JSplitPane splitPanel, PatientDirectory patientDirectory, PersonDirectory personDirectory,
+            int selectedRowIndex, HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
         this.patientDirectory = patientDirectory;
         this.personDirectory = personDirectory;
         this.selectedRowIndex = selectedRowIndex;
+        this.hospitalDirectory = hospitalDirectory;
+        this.doctorDirectory = doctorDirectory;
         maleRadioButton.setActionCommand("Male");
         femaleRadioButton.setActionCommand("Female");
         otherRadioButton.setActionCommand("Other");
@@ -336,7 +343,7 @@ public class PatientDetails extends javax.swing.JPanel {
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         // TODO add your handling code here:
-        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory);
+        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory);
         splitPanel.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_viewButtonActionPerformed
 

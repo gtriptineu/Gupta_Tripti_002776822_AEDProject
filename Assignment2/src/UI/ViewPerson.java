@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
 import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -21,16 +22,19 @@ public class ViewPerson extends javax.swing.JPanel {
     PatientDirectory patientDirectory;
     PersonDirectory personDirectory;
     DoctorDirectory doctorDirectory;
+    HospitalDirectory hospitalDirectory;
 
     /**
      * Creates new form ViewPerson
      */
-    public ViewPerson(JSplitPane splitPanel,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory) {
+    public ViewPerson(JSplitPane splitPanel,PersonDirectory personDirectory,PatientDirectory patientDirectory, DoctorDirectory doctorDirectory,
+            HospitalDirectory hospitalDirectory) {
         initComponents();
         this.personDirectory = personDirectory;
         this.splitPanel = splitPanel;
         this.patientDirectory = patientDirectory;
         this.doctorDirectory = doctorDirectory;
+        this.hospitalDirectory = hospitalDirectory;
         populateTable();
     }
 
@@ -388,21 +392,22 @@ public class ViewPerson extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        PersonDetails personDetails = new PersonDetails(splitPanel,personDirectory,patientDirectory, doctorDirectory);
+        PersonDetails personDetails = new PersonDetails(splitPanel,personDirectory,patientDirectory, doctorDirectory, hospitalDirectory);
         splitPanel.setRightComponent(personDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addPatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientButtonActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = viewPersonTable.getSelectedRow();
-        PatientDetails addPatientDetails = new PatientDetails(splitPanel,patientDirectory,personDirectory,selectedRowIndex);
+        PatientDetails addPatientDetails = new PatientDetails(splitPanel,patientDirectory,personDirectory,selectedRowIndex, hospitalDirectory, doctorDirectory);
         splitPanel.setRightComponent(addPatientDetails);
     }//GEN-LAST:event_addPatientButtonActionPerformed
 
     private void addDoctorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDoctorButtonActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = viewPersonTable.getSelectedRow();
-        DoctorDetails addDoctorDetails = new DoctorDetails(splitPanel,doctorDirectory,personDirectory, selectedRowIndex, patientDirectory);
+        DoctorDetails addDoctorDetails = new DoctorDetails(splitPanel,doctorDirectory,personDirectory, selectedRowIndex,
+                patientDirectory, hospitalDirectory);
         splitPanel.setRightComponent(addDoctorDetails);
     }//GEN-LAST:event_addDoctorButtonActionPerformed
 

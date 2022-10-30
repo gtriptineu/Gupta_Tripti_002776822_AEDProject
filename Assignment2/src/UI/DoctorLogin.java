@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.Doctor;
 import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.PersonDirectory;
 
@@ -19,18 +20,21 @@ public class DoctorLogin extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     private PersonDirectory personDirectory;
     private DoctorDirectory doctorDirectory;
+    HospitalDirectory hospitalDirectory;
     PatientDirectory patientDirctory;
     
 
     /**
      * Creates new form DoctorLogin
      */
-    public DoctorLogin(JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory, PatientDirectory patientDirctory) {
+    public DoctorLogin(JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory,
+            PatientDirectory patientDirctory, HospitalDirectory hospitalDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
         this.personDirectory = personDirectoy;
         this.doctorDirectory = doctorDirectory;
         this.patientDirctory = patientDirctory;
+        this.hospitalDirectory = hospitalDirectory;
     }
 
     /**
@@ -49,6 +53,7 @@ public class DoctorLogin extends javax.swing.JPanel {
         passwordInput = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Doctor Login Page ");
 
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -70,32 +75,33 @@ public class DoctorLogin extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(297, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(285, 285, 285))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel)
-                            .addComponent(ageLabel))
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usernameInput, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-                            .addComponent(passwordInput)))
+                        .addGap(261, 261, 261)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
-                        .addComponent(loginButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameLabel)
+                                    .addComponent(ageLabel))
+                                .addGap(51, 51, 51)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(usernameInput)
+                                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(221, 221, 221)
+                                .addComponent(loginButton)))))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(66, 66, 66)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLabel)
                     .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -105,7 +111,7 @@ public class DoctorLogin extends javax.swing.JPanel {
                     .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(69, 69, 69)
                 .addComponent(loginButton)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -121,7 +127,7 @@ public class DoctorLogin extends javax.swing.JPanel {
                 usernameMatch = 1;
                 if(d.getPassword().equals(pass)){
                     passMatch=1;
-                    ViewDoctor viewDoctor = new ViewDoctor(splitPanel, personDirectory, doctorDirectory, patientDirctory);
+                    ViewDoctor viewDoctor = new ViewDoctor(splitPanel, personDirectory, doctorDirectory, patientDirctory, hospitalDirectory, null, null);
                     splitPanel.setRightComponent(viewDoctor);
                 }
             }

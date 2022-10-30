@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.Doctor;
 import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.PersonDirectory;
 
@@ -22,6 +23,7 @@ public class EditDoctor extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     private int doctorID;
     DoctorDirectory doctorDirectory;
+    HospitalDirectory hospitalDirectory;
     String initialName;
     String initialGender;
     int initialDoctorId;
@@ -30,13 +32,14 @@ public class EditDoctor extends javax.swing.JPanel {
     /**
      * Creates new form EditPatient
      */
-    public EditDoctor(JSplitPane splitPanel,DoctorDirectory doctorDirectory,PersonDirectory personDirectory,int doctorID, PatientDirectory patientDirectory) {
+    public EditDoctor(JSplitPane splitPanel,DoctorDirectory doctorDirectory,PersonDirectory personDirectory,int doctorID, PatientDirectory patientDirectory, HospitalDirectory hospitalDirectory) {
         initComponents();
         this.doctorDirectory = doctorDirectory;
         this.splitPanel = splitPanel;
         this.doctorID = doctorID;
         this.personDirectory = personDirectory;
         this.patientDirectory=patientDirectory;
+        this.hospitalDirectory = hospitalDirectory;
         
         for(Doctor p: doctorDirectory.getDoctorDirectory())
          {
@@ -405,7 +408,7 @@ public class EditDoctor extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        ViewDoctor viewPatientDetails = new ViewDoctor(splitPanel,personDirectory,doctorDirectory,patientDirectory);
+        ViewDoctor viewPatientDetails = new ViewDoctor(splitPanel,personDirectory,doctorDirectory,patientDirectory, hospitalDirectory, null, null);
         splitPanel.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 

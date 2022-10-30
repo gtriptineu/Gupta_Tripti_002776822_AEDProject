@@ -10,6 +10,7 @@ package model;
  */
 public class Patient extends Person {
     private int patientId;
+    private boolean appBooked = false;
     EncounterHistory encounterHistory = new EncounterHistory();
 
     public int getPatientId() {
@@ -26,6 +27,14 @@ public class Patient extends Person {
 
     public void setEncounterHistory(EncounterHistory encounterHistory) {
         this.encounterHistory = encounterHistory;
+    }
+
+    public boolean isAppBooked() {
+        return appBooked;
+    }
+
+    public void setAppBooked(boolean appBooked) {
+        this.appBooked = appBooked;
     }
     
     @Override

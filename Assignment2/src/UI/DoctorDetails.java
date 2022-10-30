@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.Doctor;
 import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -21,6 +22,7 @@ public class DoctorDetails extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     PersonDirectory personDirectory;
     PatientDirectory patientDirctory;
+    HospitalDirectory hospitalDirectory;
     private int selectedRowIndex;
     String initialName;
     int initialAge;
@@ -33,13 +35,15 @@ public class DoctorDetails extends javax.swing.JPanel {
      * @param personDirectory
      * @param selectedRowIndex
      */
-    public DoctorDetails(JSplitPane splitPanel, DoctorDirectory doctorDirectory, PersonDirectory personDirectory,int selectedRowIndex, PatientDirectory patientDirctory) {
+    public DoctorDetails(JSplitPane splitPanel, DoctorDirectory doctorDirectory, PersonDirectory personDirectory,
+            int selectedRowIndex, PatientDirectory patientDirctory, HospitalDirectory hospitalDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
         this.doctorDirectory = doctorDirectory;
         this.personDirectory = personDirectory;
         this.selectedRowIndex = selectedRowIndex;
         this.patientDirctory = patientDirctory;
+        this.hospitalDirectory = hospitalDirectory;
         maleRadioButton.setActionCommand("Male");
         femaleRadioButton.setActionCommand("Female");
         otherRadioButton.setActionCommand("Other");
@@ -388,7 +392,7 @@ public class DoctorDetails extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        DoctorLogin doctorLogin = new DoctorLogin(splitPanel,personDirectory, doctorDirectory, patientDirctory);
+        DoctorLogin doctorLogin = new DoctorLogin(splitPanel,personDirectory, doctorDirectory, patientDirctory, hospitalDirectory);
         splitPanel.setRightComponent(doctorLogin);
     }//GEN-LAST:event_loginButtonActionPerformed
 

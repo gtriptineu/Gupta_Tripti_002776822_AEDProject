@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.Person;
 import model.PersonDirectory;
@@ -30,12 +31,15 @@ public class PersonDetails extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     PatientDirectory patientDirectory;
     DoctorDirectory doctorDirectory;
-    public PersonDetails(JSplitPane SplitPanel, PersonDirectory personDirectory, PatientDirectory patientDirectory, DoctorDirectory doctorDirectory) {
+    HospitalDirectory hospitalDirectory;
+    public PersonDetails(JSplitPane SplitPanel, PersonDirectory personDirectory, PatientDirectory patientDirectory, 
+            DoctorDirectory doctorDirectory, HospitalDirectory hospitalDirectory) {
         initComponents();
         this.personDirectory = personDirectory;
         this.splitPanel = SplitPanel;
         this.patientDirectory = patientDirectory;
         this.doctorDirectory = doctorDirectory;
+        this.hospitalDirectory = hospitalDirectory;
     }
 
     /**
@@ -280,7 +284,7 @@ public class PersonDetails extends javax.swing.JPanel {
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         // TODO add your handling code here:
-        ViewPerson viewPersonDetails = new ViewPerson(splitPanel, personDirectory,patientDirectory, doctorDirectory);
+        ViewPerson viewPersonDetails = new ViewPerson(splitPanel, personDirectory,patientDirectory, doctorDirectory, hospitalDirectory);
         splitPanel.setRightComponent(viewPersonDetails);
     }//GEN-LAST:event_viewButtonActionPerformed
 

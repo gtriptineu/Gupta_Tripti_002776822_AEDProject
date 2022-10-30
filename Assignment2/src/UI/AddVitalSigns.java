@@ -9,7 +9,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.DoctorDirectory;
 import model.Encounter;
+import model.HospitalDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.PersonDirectory;
@@ -28,12 +30,17 @@ public class AddVitalSigns extends javax.swing.JPanel {
     private JSplitPane SplitPane;
     PersonDirectory personDirectory;
     private int PatientID;
-    public AddVitalSigns(JSplitPane SplitPane,PatientDirectory patientDirectory,PersonDirectory personDirectory,int PatientID) {
+    HospitalDirectory hospitalDirectory;
+    DoctorDirectory doctorDirectory;
+    public AddVitalSigns(JSplitPane SplitPane,PatientDirectory patientDirectory,PersonDirectory personDirectory,
+            int PatientID, HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory) {
         initComponents();
         this.patientDirectory = patientDirectory;
         this.SplitPane = SplitPane;
         this.PatientID = PatientID;
         this.personDirectory = personDirectory;
+        this.hospitalDirectory = hospitalDirectory;
+        this.doctorDirectory = doctorDirectory;
         
         for(Patient p: patientDirectory.getPatientDirectory())
          {
@@ -218,7 +225,7 @@ public class AddVitalSigns extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        ViewPatient viewPatientDetails = new ViewPatient(SplitPane,patientDirectory,personDirectory);
+        ViewPatient viewPatientDetails = new ViewPatient(SplitPane,patientDirectory,personDirectory, hospitalDirectory,doctorDirectory);
         SplitPane.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 

@@ -6,6 +6,8 @@ package UI;
 
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.PersonDirectory;
@@ -20,6 +22,8 @@ public class EditPatient extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     private int PatientID;
     PersonDirectory personDirectory;
+    HospitalDirectory hospitalDirectory;
+    DoctorDirectory doctorDirectory;
     String initialName;
     String initialGender;
     int initialPatientId;
@@ -28,12 +32,15 @@ public class EditPatient extends javax.swing.JPanel {
     /**
      * Creates new form EditPatient
      */
-    public EditPatient(JSplitPane splitPanel,PatientDirectory patientDirectory,PersonDirectory personDirectory,int PatientID, int index) {
+    public EditPatient(JSplitPane splitPanel,PatientDirectory patientDirectory,PersonDirectory personDirectory,
+            int PatientID, int index, HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory) {
         initComponents();
         this.patientDirectory = patientDirectory;
         this.splitPanel = splitPanel;
         this.PatientID = PatientID;
         this.personDirectory = personDirectory;
+        this.hospitalDirectory = hospitalDirectory;
+        this.doctorDirectory = doctorDirectory;
         
         for(Patient p: patientDirectory.getPatientDirectory())
          {
@@ -347,7 +354,7 @@ public class EditPatient extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory);
+        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory);
         splitPanel.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 

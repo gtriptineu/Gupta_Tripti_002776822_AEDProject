@@ -8,8 +8,10 @@ package UI;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.DoctorDirectory;
 import model.Encounter;
 import model.EncounterHistory;
+import model.HospitalDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.PersonDirectory;
@@ -23,20 +25,25 @@ public class EditVitals extends javax.swing.JPanel {
     /**
      * Creates new form EditVitals
      */
-        PatientDirectory patientDirectory;
+    PatientDirectory patientDirectory;
     private JSplitPane SplitPane;
     private Patient SelectedPatient;
     private ArrayList <Encounter> EH;
     private int selectedRowIndex;
     PersonDirectory personDirectory;
+    HospitalDirectory hospitalDirectory;
+    DoctorDirectory doctorDirectory;
     
-    public EditVitals(JSplitPane SplitPane,PatientDirectory patientDirectory,PersonDirectory personDirectory,Patient SelectedPatient,int selectedRowIndex) {
+    public EditVitals(JSplitPane SplitPane,PatientDirectory patientDirectory,PersonDirectory personDirectory,
+            Patient SelectedPatient,int selectedRowIndex, HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory) {
         initComponents();
         this.patientDirectory = patientDirectory;
         this.SplitPane = SplitPane;
         this.SelectedPatient = SelectedPatient;
         this.selectedRowIndex = selectedRowIndex;
         this.personDirectory = personDirectory;
+        this.hospitalDirectory = hospitalDirectory;
+        this.doctorDirectory = doctorDirectory;
         
         for(Patient p: patientDirectory.getPatientDirectory())
          {
@@ -148,7 +155,7 @@ public class EditVitals extends javax.swing.JPanel {
                     .addComponent(pulseInput)
                     .addComponent(bpInput)
                     .addComponent(tempInput))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +186,7 @@ public class EditVitals extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editButton)
                     .addComponent(backButton))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private static boolean isInteger(String s) {
@@ -241,7 +248,7 @@ public class EditVitals extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        ViewPatient viewPatientDetails = new ViewPatient(SplitPane,patientDirectory,personDirectory);
+        ViewPatient viewPatientDetails = new ViewPatient(SplitPane,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory);
         SplitPane.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 

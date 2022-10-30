@@ -12,10 +12,13 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import model.DoctorDirectory;
 import model.Hospital;
 import model.HospitalDirectory;
 import model.Patient;
+import model.PatientDirectory;
 import model.Person;
+import model.PersonDirectory;
 
 /**
  *
@@ -24,11 +27,15 @@ import model.Person;
 public class HospitalDetails extends javax.swing.JPanel {
     JSplitPane splitPanel;
     HospitalDirectory hospitalDirectory;
+    PersonDirectory personDirectory;
+    DoctorDirectory doctorDirectory;
+    PatientDirectory patientDirectory;
 
     /**
      * Creates new form HospitalDetails
      */
-    public HospitalDetails(JSplitPane splitPanel, HospitalDirectory hospitalDirectory) {
+    public HospitalDetails(JSplitPane splitPanel, HospitalDirectory hospitalDirectory, PersonDirectory personDirectory,
+            DoctorDirectory doctorDirectory, PatientDirectory patientDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
         this.hospitalDirectory = hospitalDirectory;
@@ -268,7 +275,7 @@ public class HospitalDetails extends javax.swing.JPanel {
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         // TODO add your handling code here:
-        ViewHospital viewHospitalDetails = new ViewHospital(splitPanel, hospitalDirectory);
+        ViewHospital viewHospitalDetails = new ViewHospital(splitPanel, hospitalDirectory, null, personDirectory, doctorDirectory,patientDirectory);
         splitPanel.setRightComponent(viewHospitalDetails);
     }//GEN-LAST:event_viewButtonActionPerformed
 

@@ -7,7 +7,10 @@ package UI;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.plaf.SplitPaneUI;
+import model.DoctorDirectory;
 import model.HospitalDirectory;
+import model.PatientDirectory;
+import model.PersonDirectory;
 
 /**
  *
@@ -16,14 +19,21 @@ import model.HospitalDirectory;
 public class SystemAdminLogin extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     HospitalDirectory hospitalDirectory;
+    PersonDirectory personDirectory;
+    DoctorDirectory doctorDirectory;
+    PatientDirectory patientDirectory;
 
     /**
      * Creates new form SystemAdminLogin
      */
-    public SystemAdminLogin(JSplitPane splitPanel, HospitalDirectory hospitalDirectory) {
+    public SystemAdminLogin(JSplitPane splitPanel, HospitalDirectory hospitalDirectory, PersonDirectory personDirectory,
+            DoctorDirectory doctorDirectory, PatientDirectory patientDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
         this.hospitalDirectory = hospitalDirectory;
+        this.doctorDirectory = doctorDirectory;
+        this.personDirectory = personDirectory;
+        this.patientDirectory = patientDirectory;
     }
 
     /**
@@ -109,7 +119,8 @@ public class SystemAdminLogin extends javax.swing.JPanel {
         if(username.equals(USERNAME) && pass.equals(PASSWORD)){
             usernameInput.setText("");
             passwordInput.setText("");
-            HospitalDetails addHospital = new HospitalDetails(splitPanel, hospitalDirectory);
+            HospitalDetails addHospital = new HospitalDetails(splitPanel, hospitalDirectory, personDirectory,
+             doctorDirectory, patientDirectory );
             splitPanel.setRightComponent(addHospital);
         } else {
             JOptionPane.showMessageDialog(this, "UserId or Password entered is Incorrect");

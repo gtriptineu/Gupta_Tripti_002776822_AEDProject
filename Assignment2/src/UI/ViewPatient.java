@@ -7,7 +7,9 @@ package UI;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
+import model.DoctorDirectory;
 import model.Encounter;
+import model.HospitalDirectory;
 import model.Patient;
 import model.PatientDirectory;
 import model.PersonDirectory;
@@ -20,15 +22,20 @@ public class ViewPatient extends javax.swing.JPanel {
     PatientDirectory patientDirectory;
     private JSplitPane splitPanel;
     PersonDirectory personDirectory;
+    HospitalDirectory hospitalDirectory;
+    DoctorDirectory doctorDirectory;
 
     /**
      * Creates new form ViewPatient
      */
-    public ViewPatient(JSplitPane splitPanel,PatientDirectory patientDirectory, PersonDirectory personDirectory) {
+    public ViewPatient(JSplitPane splitPanel,PatientDirectory patientDirectory, PersonDirectory personDirectory,
+            HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory) {
         initComponents();
         this.patientDirectory = patientDirectory;
         this.splitPanel = splitPanel;
         this.personDirectory = personDirectory;
+        this.hospitalDirectory = hospitalDirectory;
+        this.doctorDirectory = doctorDirectory;
         populateTable();
     }
 
@@ -53,22 +60,23 @@ public class ViewPatient extends javax.swing.JPanel {
         editVitalsButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         viewVitalsTable = new javax.swing.JTable();
+        bookAppButton = new javax.swing.JButton();
 
         viewPatientDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Age", "Gender", "House", "City", "Community", "Patient ID"
+                "Name", "Age", "Gender", "House", "City", "Community", "Patient ID", "Appointment Booked"
             }
         ));
         jScrollPane1.setViewportView(viewPatientDetailsTable);
@@ -140,6 +148,13 @@ public class ViewPatient extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(viewVitalsTable);
 
+        bookAppButton.setText("Book an Appointment");
+        bookAppButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookAppButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,7 +181,9 @@ public class ViewPatient extends javax.swing.JPanel {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(editVitalsButton)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editVitalsButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bookAppButton, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -187,7 +204,9 @@ public class ViewPatient extends javax.swing.JPanel {
                         .addComponent(viewVitalsButton)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bookAppButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(editVitalsButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,7 +253,7 @@ public class ViewPatient extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        PatientDetails addPatientDetails = new PatientDetails(splitPanel,patientDirectory,personDirectory,-1);
+        PatientDetails addPatientDetails = new PatientDetails(splitPanel,patientDirectory,personDirectory,-1, hospitalDirectory, doctorDirectory);
         splitPanel.setRightComponent(addPatientDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 
@@ -250,7 +269,8 @@ public class ViewPatient extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
         Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
 
-        EditPatient editPatient = new EditPatient(splitPanel,patientDirectory,personDirectory,selectedPatient.getPatientId(), selectedRowIndex);
+        EditPatient editPatient = new EditPatient(splitPanel,patientDirectory,personDirectory,selectedPatient.getPatientId(),
+                selectedRowIndex, hospitalDirectory, doctorDirectory);
         splitPanel.setRightComponent(editPatient);
     }//GEN-LAST:event_EditPatientButtonActionPerformed
 
@@ -296,12 +316,19 @@ public class ViewPatient extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Select a row to add Vital Sign.");
             return;
         }
+        
         DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
         Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
         int PatientID = selectedPatient.getPatientId();
-
-        AddVitalSigns addVitalSigns = new AddVitalSigns(splitPanel,patientDirectory,personDirectory,PatientID);
-        splitPanel.setRightComponent(addVitalSigns);
+        
+        if(selectedPatient.isAppBooked()){
+            selectedPatient.setAppBooked(false);
+            AddVitalSigns addVitalSigns = new AddVitalSigns(splitPanel,patientDirectory,personDirectory,PatientID, hospitalDirectory, doctorDirectory);
+            splitPanel.setRightComponent(addVitalSigns);
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Please book appointment to add vitals.");
+        }
     }//GEN-LAST:event_addVitalsButtonActionPerformed
 
     private void editVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVitalsButtonActionPerformed
@@ -316,10 +343,33 @@ public class ViewPatient extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
         int patientSelectedIndex = viewPatientDetailsTable.getSelectedRow();
         Patient selectedPatient = (Patient) model.getValueAt(patientSelectedIndex, 0);
-
-        EditVitals editVitals = new EditVitals(splitPanel,patientDirectory,personDirectory,selectedPatient,selectedRowIndex);
-        splitPanel.setRightComponent(editVitals);
+        
+        if(selectedPatient.isAppBooked()){
+            selectedPatient.setAppBooked(false);
+            EditVitals editVitals = new EditVitals(splitPanel,patientDirectory,personDirectory,selectedPatient,selectedRowIndex,
+                hospitalDirectory, doctorDirectory);
+            splitPanel.setRightComponent(editVitals);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please book appointment to edit vitals.");
+        }
     }//GEN-LAST:event_editVitalsButtonActionPerformed
+
+    private void bookAppButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAppButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = viewPatientDetailsTable.getSelectedRow();
+
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row to Book an appointment.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
+        int patientSelectedIndex = viewPatientDetailsTable.getSelectedRow();
+        Patient selectedPatient = (Patient) model.getValueAt(patientSelectedIndex, 0);
+
+        ViewHospital viewHospital = new ViewHospital(splitPanel,hospitalDirectory,selectedPatient, personDirectory, doctorDirectory,patientDirectory);
+        splitPanel.setRightComponent(viewHospital);
+    }//GEN-LAST:event_bookAppButtonActionPerformed
 
 
      private void populateTable() {
@@ -331,7 +381,7 @@ public class ViewPatient extends javax.swing.JPanel {
          
          for(Patient p: patientDirectory.getPatientDirectory())
          {
-             Object[] row = new Object[7];
+             Object[] row = new Object[8];
              row[0]=p;
              row[1]=p.getAge();
              row[2]=p.getGender();
@@ -339,6 +389,7 @@ public class ViewPatient extends javax.swing.JPanel {
              row[4]=p.getCity();
              row[5]=p.getCommunity();
              row[6]=p.getPatientId();
+             row[7] = p.isAppBooked()? "Yes": "No";
              
              model.addRow(row);
          }
@@ -348,6 +399,7 @@ public class ViewPatient extends javax.swing.JPanel {
     private javax.swing.JButton EditPatientButton;
     private javax.swing.JButton addVitalsButton;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton bookAppButton;
     private javax.swing.JButton editVitalsButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

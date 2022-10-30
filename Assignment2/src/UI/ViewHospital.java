@@ -4,11 +4,15 @@
  */
 package UI;
 
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
+import model.DoctorDirectory;
 import model.Hospital;
 import model.HospitalDirectory;
 import model.Patient;
+import model.PatientDirectory;
+import model.PersonDirectory;
 
 /**
  *
@@ -16,15 +20,24 @@ import model.Patient;
  */
 public class ViewHospital extends javax.swing.JPanel {
     HospitalDirectory hospitalDirectory;
+    PersonDirectory personDirectory;
+    DoctorDirectory doctorDirectory;
+    PatientDirectory patientDirectory;
+    Patient patient;
     JSplitPane splitPanel;
 
     /**
      * Creates new form ViewHospital
      */
-    public ViewHospital(JSplitPane splitPanel, HospitalDirectory hospitalDirectory) {
+    public ViewHospital(JSplitPane splitPanel, HospitalDirectory hospitalDirectory, Patient patient, PersonDirectory personDirectory,
+            DoctorDirectory doctorDirectory,PatientDirectory patientDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
         this.hospitalDirectory = hospitalDirectory;
+        this.patient = patient;
+        this.personDirectory = personDirectory;
+        this.patientDirectory = patientDirectory;
+        this.doctorDirectory = doctorDirectory;
         populateTable();
     }
 
@@ -43,6 +56,7 @@ public class ViewHospital extends javax.swing.JPanel {
         searchButton = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
         refreshButton = new javax.swing.JButton();
+        docDetailsButton = new javax.swing.JButton();
 
         viewHospHeading.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         viewHospHeading.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -75,26 +89,36 @@ public class ViewHospital extends javax.swing.JPanel {
             }
         });
 
+        docDetailsButton.setText("View Doctor Details");
+        docDetailsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                docDetailsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchButton)
-                        .addGap(482, 482, 482)
-                        .addComponent(refreshButton))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(253, 253, 253)
                             .addComponent(viewHospHeading, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 794, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(searchButton)
+                                .addGap(482, 482, 482)
+                                .addComponent(refreshButton))
+                            .addComponent(docDetailsButton))))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,7 +133,9 @@ public class ViewHospital extends javax.swing.JPanel {
                     .addComponent(refreshButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(docDetailsButton)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -135,6 +161,7 @@ public class ViewHospital extends javax.swing.JPanel {
                 model.addRow(row);
                 break;
             }
+            searchInput.setText("");
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -142,6 +169,24 @@ public class ViewHospital extends javax.swing.JPanel {
         // TODO add your handling code here:
         populateTable();
     }//GEN-LAST:event_refreshButtonActionPerformed
+
+    private void docDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_docDetailsButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = viewHospTable.getSelectedRow();
+
+        if(selectedRowIndex<0)
+        {
+            JOptionPane.showMessageDialog(this, "Select a row to view Doctor details.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) viewHospTable.getModel();
+        int hospitalSelectedIndex = viewHospTable.getSelectedRow();
+        Hospital selectedHospital = (Hospital) model.getValueAt(hospitalSelectedIndex, 0);
+
+        ViewDoctor viewDoctor = new ViewDoctor(splitPanel,personDirectory, doctorDirectory,patientDirectory,
+                hospitalDirectory,selectedHospital, patient);
+        splitPanel.setRightComponent(viewDoctor);
+    }//GEN-LAST:event_docDetailsButtonActionPerformed
 
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) viewHospTable.getModel();
@@ -161,6 +206,7 @@ public class ViewHospital extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton docDetailsButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshButton;
     private javax.swing.JButton searchButton;

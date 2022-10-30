@@ -140,35 +140,28 @@ public class Main extends javax.swing.JFrame {
 
     private void personButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personButtonActionPerformed
         // TODO add your handling code here:
-        PersonDetails addPersonDetails = new PersonDetails(splitPanel, personDirectory, patientDirectory, doctorDirectory);
+        PersonDetails addPersonDetails = new PersonDetails(splitPanel, personDirectory, patientDirectory, doctorDirectory,hospitalDirectory);
         splitPanel.setRightComponent(addPersonDetails);
     }//GEN-LAST:event_personButtonActionPerformed
 
     private void patientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientButtonActionPerformed
         // TODO add your handling code here:
-        PatientDetails addPatientDetails = new PatientDetails(splitPanel,patientDirectory,personDirectory,-1);
+        PatientDetails addPatientDetails = new PatientDetails(splitPanel,patientDirectory,personDirectory,-1, hospitalDirectory, doctorDirectory);
         splitPanel.setRightComponent(addPatientDetails);
     }//GEN-LAST:event_patientButtonActionPerformed
 
     private void doctorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorButtonActionPerformed
         // TODO add your handling code here:
-        DoctorLogin loginDoctor = new DoctorLogin(splitPanel, personDirectory, doctorDirectory, patientDirectory);
+        DoctorLogin loginDoctor = new DoctorLogin(splitPanel, personDirectory, doctorDirectory, patientDirectory, hospitalDirectory);
         splitPanel.setRightComponent(loginDoctor);
     }//GEN-LAST:event_doctorButtonActionPerformed
 
     private void manageHospitalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageHospitalButtonActionPerformed
         // TODO add your handling code here:
-        SystemAdminLogin sysAdminLogin = new SystemAdminLogin(splitPanel, hospitalDirectory);
+        SystemAdminLogin sysAdminLogin = new SystemAdminLogin(splitPanel, hospitalDirectory, personDirectory, doctorDirectory,patientDirectory);
         splitPanel.setRightComponent(sysAdminLogin);
     }//GEN-LAST:event_manageHospitalButtonActionPerformed
 
-
-//    private void btnPersonActionPerformed(java.awt.event.ActionEvent evt) {                                          
-//        // TODO add your handling code here:
-//        PersonDetails addPersonDetails = new PersonDetails(SplitPane,personDirectory,patientDirectory);
-//        SplitPane.setRightComponent(addPersonDetails);
-//    }  
-    
     /**
      * @param args the command line arguments
      */
