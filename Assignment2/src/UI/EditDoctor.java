@@ -292,39 +292,39 @@ public class EditDoctor extends javax.swing.JPanel {
         otherRadioButton.setActionCommand("Other");
         if(nameInput.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Name Feild is empty");
+            JOptionPane.showMessageDialog(this, "Name Field is empty");
         }
         else if(ageInput.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Age Feild is empty");
+            JOptionPane.showMessageDialog(this, "Age Field is empty");
         }
         else if(genderRadioButtonGroup.getSelection().getActionCommand().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Age Feild is empty");
+            JOptionPane.showMessageDialog(this, "Age Field is empty");
         }
         else if(hospitalInput.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Hospital Feild is empty");
+            JOptionPane.showMessageDialog(this, "Hospital Field is empty");
         }
         else if(passwordInput.getPassword().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Password Feild is empty");
+            JOptionPane.showMessageDialog(this, "Password Field is empty");
         }
         else if(houseInput.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Residence Feild is empty");
+            JOptionPane.showMessageDialog(this, "Residence Field is empty");
         }
         else if(cityInput.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "City Feild is empty");
+            JOptionPane.showMessageDialog(this, "City Field is empty");
         }
         else if(communityInput.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Community Feild is empty");
+            JOptionPane.showMessageDialog(this, "Community Field is empty");
         }
         else if(doctorIdInput.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(this, "Doctor ID Feild is empty");
+            JOptionPane.showMessageDialog(this, "Doctor ID Field is empty");
         }
         else if(!isInteger(ageInput.getText()))
         {
