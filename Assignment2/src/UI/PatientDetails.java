@@ -254,31 +254,31 @@ public class PatientDetails extends javax.swing.JPanel {
         // TODO add your handling code here:
        if(nameInput.getText().equals(""))
        {
-           JOptionPane.showMessageDialog(this, "Name Feild is empty");
+           JOptionPane.showMessageDialog(this, "Name Field is empty");
        }
        else if(ageInput.getText().equals(""))
        {
-        JOptionPane.showMessageDialog(this, "Age Feild is empty");
+        JOptionPane.showMessageDialog(this, "Age Field is empty");
        }
        else if(genderRadioButtonGroup.getSelection().getActionCommand().equals(""))
        {
-        JOptionPane.showMessageDialog(this, "Gender Feild is empty");
+        JOptionPane.showMessageDialog(this, "Gender Field is empty");
        }
        else if(houseInput.getText().equals(""))
        {
-        JOptionPane.showMessageDialog(this, "Residence Feild is empty");
+        JOptionPane.showMessageDialog(this, "Residence Field is empty");
        }
        else if(cityInput.getText().equals(""))
        {
-        JOptionPane.showMessageDialog(this, "City Feild is empty");
+        JOptionPane.showMessageDialog(this, "City Field is empty");
        }
        else if(communityInput.getText().equals(""))
        {
-        JOptionPane.showMessageDialog(this, "Community Feild is empty");
+        JOptionPane.showMessageDialog(this, "Community Field is empty");
        }
        else if(patientIdInput.getText().equals(""))
        {
-        JOptionPane.showMessageDialog(this, "Patient ID Feild is empty");
+        JOptionPane.showMessageDialog(this, "Patient ID Field is empty");
        }
        else if(!isInteger(ageInput.getText()))
        {

@@ -204,15 +204,15 @@ public class EditVitals extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(pulseInput.getText().equals("") || !isInteger(pulseInput.getText()))
         {
-            JOptionPane.showMessageDialog(this, "Pulse Feild is invalid.");
+            JOptionPane.showMessageDialog(this, "Pulse Field is invalid.");
         }
         else if(tempInput.getText().equals("") || !isInteger(tempInput.getText()))
         {
-            JOptionPane.showMessageDialog(this, "Temperature Feild is invalid.");
+            JOptionPane.showMessageDialog(this, "Temperature Field is invalid.");
         }
         else if(bpInput.getText().equals("") || !isInteger(bpInput.getText()))
         {
-            JOptionPane.showMessageDialog(this, "Blood pressure Feild is invalid.");
+            JOptionPane.showMessageDialog(this, "Blood pressure Field is invalid.");
         }
         else
         {
