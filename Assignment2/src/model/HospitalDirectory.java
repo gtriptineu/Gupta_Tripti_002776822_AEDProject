@@ -12,6 +12,10 @@ import java.util.ArrayList;
  */
 public class HospitalDirectory {
     private ArrayList<Hospital> hospitalDirectory;
+    
+    public HospitalDirectory(){
+        this.hospitalDirectory = new ArrayList<>();
+    }
 
     public ArrayList<Hospital> getHospitalDirectory() {
         return hospitalDirectory;
@@ -21,5 +25,13 @@ public class HospitalDirectory {
         this.hospitalDirectory = hospitalDirectory;
     }
     
+    public Hospital addNewHospital(){
+        Hospital newHospital = new Hospital();
+        hospitalDirectory.add(newHospital);
+        return newHospital;
+    }
+    public void deleteHospital(Hospital newHospital){
+        hospitalDirectory.remove(newHospital);
+    }
     
 }

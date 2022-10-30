@@ -5,6 +5,7 @@
 package UI;
 
 import model.DoctorDirectory;
+import model.HospitalDirectory;
 import model.PatientDirectory;
 import model.PersonDirectory;
 
@@ -24,6 +25,7 @@ public class Main extends javax.swing.JFrame {
     PersonDirectory personDirectory = new PersonDirectory();
     PatientDirectory patientDirectory = new PatientDirectory();
     DoctorDirectory doctorDirectory = new DoctorDirectory();
+    HospitalDirectory hospitalDirectory = new HospitalDirectory();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +41,7 @@ public class Main extends javax.swing.JFrame {
         personButton = new javax.swing.JButton();
         patientButton = new javax.swing.JButton();
         doctorButton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        manageHospitalButton = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         rightPanel = new javax.swing.JPanel();
 
@@ -68,7 +70,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("jButton1");
+        manageHospitalButton.setText("Manage Hospital");
+        manageHospitalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageHospitalButtonActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("jButton1");
 
@@ -78,13 +85,13 @@ public class Main extends javax.swing.JFrame {
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(leftPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(personButton)
-                    .addComponent(patientButton)
-                    .addComponent(doctorButton)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(manageHospitalButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(personButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(patientButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(doctorButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         leftPanelLayout.setVerticalGroup(
             leftPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +103,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(doctorButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(manageHospitalButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5)
                 .addContainerGap(182, Short.MAX_VALUE))
@@ -149,6 +156,12 @@ public class Main extends javax.swing.JFrame {
         splitPanel.setRightComponent(loginDoctor);
     }//GEN-LAST:event_doctorButtonActionPerformed
 
+    private void manageHospitalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageHospitalButtonActionPerformed
+        // TODO add your handling code here:
+        SystemAdminLogin sysAdminLogin = new SystemAdminLogin(splitPanel, hospitalDirectory);
+        splitPanel.setRightComponent(sysAdminLogin);
+    }//GEN-LAST:event_manageHospitalButtonActionPerformed
+
 
 //    private void btnPersonActionPerformed(java.awt.event.ActionEvent evt) {                                          
 //        // TODO add your handling code here:
@@ -193,9 +206,9 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton doctorButton;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel leftPanel;
+    private javax.swing.JButton manageHospitalButton;
     private javax.swing.JButton patientButton;
     private javax.swing.JButton personButton;
     private javax.swing.JPanel rightPanel;

@@ -276,7 +276,6 @@ public class PersonDetails extends javax.swing.JPanel {
         cityInput.setText("");
         communityInput.setText("");
        }
-       System.out.println("person directory"+ personDirectory );
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
