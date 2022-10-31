@@ -11,6 +11,7 @@ package model;
 public class Patient extends Person {
     private int patientId;
     private boolean appBooked = false;
+    private String password;
     EncounterHistory encounterHistory = new EncounterHistory();
 
     public int getPatientId() {
@@ -35,6 +36,14 @@ public class Patient extends Person {
 
     public void setAppBooked(boolean appBooked) {
         this.appBooked = appBooked;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     @Override

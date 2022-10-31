@@ -16,7 +16,7 @@ import model.PersonDirectory;
  *
  * @author Lenovo
  */
-public class AdminPerson extends javax.swing.JPanel {
+public class AdminPatient extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     private PersonDirectory personDirectory;
     private DoctorDirectory doctorDirectory;
@@ -27,7 +27,7 @@ public class AdminPerson extends javax.swing.JPanel {
     /**
      * Creates new form DoctorLogin
      */
-    public AdminPerson(JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory,
+    public AdminPatient(JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory,
             PatientDirectory patientDirctory, HospitalDirectory hospitalDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
@@ -54,7 +54,7 @@ public class AdminPerson extends javax.swing.JPanel {
         loginButton = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("System Admin Login Page for Person");
+        jLabel1.setText("System Admin Login Page To View Patient ");
 
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -92,7 +92,7 @@ public class AdminPerson extends javax.swing.JPanel {
                                 .addGap(221, 221, 221)
                                 .addComponent(loginButton))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
+                        .addGap(147, 147, 147)
                         .addComponent(jLabel1)))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
@@ -127,9 +127,8 @@ public class AdminPerson extends javax.swing.JPanel {
         if(username.equals(USERNAME) && pass.equals(PASSWORD)){
             usernameInput.setText("");
             passwordInput.setText("");
-            PersonDetails addPersonDetails = new PersonDetails(splitPanel, personDirectory, patientDirctory, doctorDirectory,hospitalDirectory);
-            splitPanel.setRightComponent(addPersonDetails);
-
+            ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirctory,personDirectory, hospitalDirectory, doctorDirectory, -1);
+            splitPanel.setRightComponent(viewPatientDetails);
         } else {
             JOptionPane.showMessageDialog(this, "UserId or Password entered is Incorrect");
         }

@@ -14,7 +14,7 @@ import model.PatientDirectory;
  *
  * @author Lenovo
  */
-public class LoginDoctor extends javax.swing.JPanel {
+public class LoginPatient extends javax.swing.JPanel {
     JSplitPane splitPanel;
     HospitalDirectory hospitalDirectory;
     PersonDirectory personDirectory;
@@ -24,7 +24,7 @@ public class LoginDoctor extends javax.swing.JPanel {
     /**
      * Creates new form LoginDoctor
      */
-    public LoginDoctor(JSplitPane splitPanel, HospitalDirectory hospitalDirectory, PersonDirectory personDirectory,DoctorDirectory doctorDirectory,PatientDirectory patientDirectory) {
+    public LoginPatient(JSplitPane splitPanel, HospitalDirectory hospitalDirectory, PersonDirectory personDirectory,DoctorDirectory doctorDirectory,PatientDirectory patientDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
         this.patientDirectory = patientDirectory;
@@ -47,7 +47,7 @@ public class LoginDoctor extends javax.swing.JPanel {
         systemAdminLoginButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        doctorLoginButton.setText("Login as Doctor");
+        doctorLoginButton.setText("Login as Patient");
         doctorLoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 doctorLoginButtonActionPerformed(evt);
@@ -63,7 +63,7 @@ public class LoginDoctor extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Login Doctor");
+        jLabel1.setText("Login Patient");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,14 +97,14 @@ public class LoginDoctor extends javax.swing.JPanel {
 
     private void systemAdminLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_systemAdminLoginButtonActionPerformed
         // TODO add your handling code here:
-        AdminDoctor loginDoctor = new AdminDoctor(splitPanel, personDirectory, doctorDirectory, patientDirectory, hospitalDirectory);
-        splitPanel.setRightComponent(loginDoctor);
+        AdminPatient loginPatient = new AdminPatient(splitPanel, personDirectory, doctorDirectory, patientDirectory, hospitalDirectory);
+        splitPanel.setRightComponent(loginPatient);
     }//GEN-LAST:event_systemAdminLoginButtonActionPerformed
 
     private void doctorLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorLoginButtonActionPerformed
         // TODO add your handling code here:
-        DoctorLogin loginDoctor = new DoctorLogin(splitPanel, personDirectory, doctorDirectory, patientDirectory, hospitalDirectory);
-        splitPanel.setRightComponent(loginDoctor);
+        PatientLogin loginPatient = new PatientLogin(splitPanel, personDirectory, doctorDirectory, patientDirectory, hospitalDirectory);
+        splitPanel.setRightComponent(loginPatient);
     }//GEN-LAST:event_doctorLoginButtonActionPerformed
 
 

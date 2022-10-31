@@ -105,6 +105,8 @@ public class PatientDetails extends javax.swing.JPanel {
         femaleRadioButton = new javax.swing.JRadioButton();
         patientIdLabel = new javax.swing.JLabel();
         patientIdInput = new javax.swing.JTextField();
+        passwordLabel = new javax.swing.JLabel();
+        passwordInput = new javax.swing.JPasswordField();
 
         patientLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         patientLabel.setText("Patient Details");
@@ -160,6 +162,10 @@ public class PatientDetails extends javax.swing.JPanel {
         patientIdLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         patientIdLabel.setText("Patient ID:");
 
+        passwordLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        passwordLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        passwordLabel.setText("Password:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,11 +194,13 @@ public class PatientDetails extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(communityLabel)
-                                    .addComponent(patientIdLabel))
+                                    .addComponent(patientIdLabel)
+                                    .addComponent(passwordLabel))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(patientIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(communityInput, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(patientIdInput, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                                    .addComponent(communityInput, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                                    .addComponent(passwordInput)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(maleRadioButton)
@@ -201,7 +209,7 @@ public class PatientDetails extends javax.swing.JPanel {
                         .addGap(51, 51, 51)
                         .addComponent(otherRadioButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
+                        .addGap(184, 184, 184)
                         .addComponent(saveButton)
                         .addGap(39, 39, 39)
                         .addComponent(viewButton)))
@@ -244,9 +252,13 @@ public class PatientDetails extends javax.swing.JPanel {
                     .addComponent(patientIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLabel)
+                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveButton)
                     .addComponent(viewButton))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -275,6 +287,10 @@ public class PatientDetails extends javax.swing.JPanel {
        else if(communityInput.getText().equals(""))
        {
         JOptionPane.showMessageDialog(this, "Community Field is empty");
+       }
+       else if(passwordInput.getPassword().equals(""))
+       {
+        JOptionPane.showMessageDialog(this, "Password Field is empty");
        }
        else if(patientIdInput.getText().equals(""))
        {
@@ -313,6 +329,7 @@ public class PatientDetails extends javax.swing.JPanel {
         String house = houseInput.getText();
         String city = cityInput.getText();
         String community = communityInput.getText();
+        String password = String.valueOf(passwordInput.getPassword());
         int patientId = Integer.parseInt(patientIdInput.getText());
         
         Patient p = patientDirectory.addNewPatient();
@@ -323,6 +340,7 @@ public class PatientDetails extends javax.swing.JPanel {
         p.setCity(city);
         p.setCommunity(community);
         p.setPatientId(patientId);
+        p.setPassword(password);
         
         JOptionPane.showMessageDialog(this, "Patient Details Saved");
         
@@ -333,6 +351,7 @@ public class PatientDetails extends javax.swing.JPanel {
         cityInput.setText("");
         communityInput.setText("");
         patientIdInput.setText("");
+        passwordInput.setText("");
         }
         else
         {
@@ -343,7 +362,7 @@ public class PatientDetails extends javax.swing.JPanel {
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         // TODO add your handling code here:
-        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory);
+        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory, -1);
         splitPanel.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_viewButtonActionPerformed
 
@@ -376,6 +395,8 @@ public class PatientDetails extends javax.swing.JPanel {
     private javax.swing.JTextField nameInput;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JRadioButton otherRadioButton;
+    private javax.swing.JPasswordField passwordInput;
+    private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField patientIdInput;
     private javax.swing.JLabel patientIdLabel;
     private javax.swing.JLabel patientLabel;

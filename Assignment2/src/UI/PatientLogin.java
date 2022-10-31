@@ -9,6 +9,7 @@ import javax.swing.JSplitPane;
 import model.Doctor;
 import model.DoctorDirectory;
 import model.HospitalDirectory;
+import model.Patient;
 import model.PatientDirectory;
 import model.PersonDirectory;
 
@@ -16,7 +17,7 @@ import model.PersonDirectory;
  *
  * @author Lenovo
  */
-public class AdminPerson extends javax.swing.JPanel {
+public class PatientLogin extends javax.swing.JPanel {
     private JSplitPane splitPanel;
     private PersonDirectory personDirectory;
     private DoctorDirectory doctorDirectory;
@@ -27,7 +28,7 @@ public class AdminPerson extends javax.swing.JPanel {
     /**
      * Creates new form DoctorLogin
      */
-    public AdminPerson(JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory,
+    public PatientLogin(JSplitPane splitPanel, PersonDirectory personDirectoy, DoctorDirectory doctorDirectory,
             PatientDirectory patientDirctory, HospitalDirectory hospitalDirectory) {
         initComponents();
         this.splitPanel = splitPanel;
@@ -54,7 +55,7 @@ public class AdminPerson extends javax.swing.JPanel {
         loginButton = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("System Admin Login Page for Person");
+        jLabel1.setText("Patient Login Page ");
 
         nameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nameLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -78,6 +79,9 @@ public class AdminPerson extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(261, 261, 261)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -90,10 +94,7 @@ public class AdminPerson extends javax.swing.JPanel {
                                     .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(221, 221, 221)
-                                .addComponent(loginButton))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(jLabel1)))
+                                .addComponent(loginButton)))))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,21 +118,25 @@ public class AdminPerson extends javax.swing.JPanel {
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
-        String username = usernameInput.getText();
+        int userId = Integer.parseInt(usernameInput.getText());
         String pass = String.valueOf(passwordInput.getPassword());
         int usernameMatch = 0;
         int passMatch = 0;
-        String USERNAME = "system";
-        String PASSWORD = "system";
-        
-        if(username.equals(USERNAME) && pass.equals(PASSWORD)){
-            usernameInput.setText("");
-            passwordInput.setText("");
-            PersonDetails addPersonDetails = new PersonDetails(splitPanel, personDirectory, patientDirctory, doctorDirectory,hospitalDirectory);
-            splitPanel.setRightComponent(addPersonDetails);
-
-        } else {
-            JOptionPane.showMessageDialog(this, "UserId or Password entered is Incorrect");
+        for(Patient d: patientDirctory.getPatientDirectory()){
+            System.out.println("doc--" + d);
+            if(d.getPatientId()== userId){
+                usernameMatch = 1;
+                if(d.getPassword().equals(pass)){
+                    passMatch=1;
+                    ViewPatient viewDoctor = new ViewPatient(splitPanel,patientDirctory, personDirectory, hospitalDirectory,doctorDirectory, userId);
+                    splitPanel.setRightComponent(viewDoctor);
+                }
+            }
+        }
+        if(usernameMatch == 0){
+            JOptionPane.showMessageDialog(this, "UserId Entered is Incorrect");
+        } else if(passMatch==0){
+            JOptionPane.showMessageDialog(this, "Password Entered is Incorrect");
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

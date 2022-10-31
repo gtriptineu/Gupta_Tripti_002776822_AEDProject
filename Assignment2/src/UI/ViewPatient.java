@@ -7,6 +7,7 @@ package UI;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.table.DefaultTableModel;
+import model.Doctor;
 import model.DoctorDirectory;
 import model.Encounter;
 import model.HospitalDirectory;
@@ -29,14 +30,40 @@ public class ViewPatient extends javax.swing.JPanel {
      * Creates new form ViewPatient
      */
     public ViewPatient(JSplitPane splitPanel,PatientDirectory patientDirectory, PersonDirectory personDirectory,
-            HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory) {
+            HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory, int userId) {
         initComponents();
         this.patientDirectory = patientDirectory;
         this.splitPanel = splitPanel;
         this.personDirectory = personDirectory;
         this.hospitalDirectory = hospitalDirectory;
         this.doctorDirectory = doctorDirectory;
-        populateTable();
+        if(userId>0){
+            DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
+            model.setRowCount(0);
+
+            for(Patient p: patientDirectory.getPatientDirectory())
+            {
+                if(p.getPatientId()== userId)
+                {
+                    Object[] row = new Object[8];
+                    row[0]=p;
+                    row[1]=p.getAge();
+                    row[2]=p.getGender();
+                    row[3]=p.getHouse();
+                    row[4]=p.getCity();
+                    row[5]=p.getCommunity();
+                    row[6]=p.getPatientId();
+                    row[7] = p.isAppBooked()? "Yes": "No";
+
+                    model.addRow(row);
+                    break;
+                }
+            }
+        } else {
+            populateTable();
+        }
+//        populateTable();
+
     }
 
     /**

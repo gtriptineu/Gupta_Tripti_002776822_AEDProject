@@ -248,7 +248,7 @@ public class EditVitals extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        ViewPatient viewPatientDetails = new ViewPatient(SplitPane,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory);
+        ViewPatient viewPatientDetails = new ViewPatient(SplitPane,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory, -1);
         SplitPane.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_backButtonActionPerformed
 

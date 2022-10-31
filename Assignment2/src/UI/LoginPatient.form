@@ -52,7 +52,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="doctorLoginButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Login as Doctor"/>
+        <Property name="text" type="java.lang.String" value="Login as Patient"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doctorLoginButtonActionPerformed"/>
@@ -72,7 +72,7 @@
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Login Doctor"/>
+        <Property name="text" type="java.lang.String" value="Login Patient"/>
       </Properties>
     </Component>
   </SubComponents>
