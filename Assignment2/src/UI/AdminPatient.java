@@ -127,7 +127,7 @@ public class AdminPatient extends javax.swing.JPanel {
         if(username.equals(USERNAME) && pass.equals(PASSWORD)){
             usernameInput.setText("");
             passwordInput.setText("");
-            ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirctory,personDirectory, hospitalDirectory, doctorDirectory, -1);
+            ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirctory,personDirectory, hospitalDirectory, doctorDirectory, -1, true);
             splitPanel.setRightComponent(viewPatientDetails);
         } else {
             JOptionPane.showMessageDialog(this, "UserId or Password entered is Incorrect");

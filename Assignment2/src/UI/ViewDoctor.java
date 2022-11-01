@@ -213,7 +213,7 @@ public class ViewDoctor extends javax.swing.JPanel {
 
     private void viewPatientDetailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPatientDetailsButtonActionPerformed
         // TODO add your handling code here:
-        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory, hospitalDirectory,doctorDirectory, -1);
+        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory, hospitalDirectory,doctorDirectory, -1, true);
         splitPanel.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_viewPatientDetailsButtonActionPerformed
 
@@ -281,7 +281,7 @@ public class ViewDoctor extends javax.swing.JPanel {
             patient.setAppBooked(true);
             JOptionPane.showConfirmDialog(this, "Booking Confirmed!");
 
-            ViewPatient viewPatient = new ViewPatient(splitPanel,patientDirectory,personDirectory,hospitalDirectory,doctorDirectory, -1);
+            ViewPatient viewPatient = new ViewPatient(splitPanel,patientDirectory,personDirectory,hospitalDirectory,doctorDirectory, patient.getPatientId(), false);
             splitPanel.setRightComponent(viewPatient);
         } else {
             JOptionPane.showMessageDialog(this, "Please go to View Patients to book an appointment.");

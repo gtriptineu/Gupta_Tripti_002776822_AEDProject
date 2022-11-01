@@ -362,7 +362,7 @@ public class PatientDetails extends javax.swing.JPanel {
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         // TODO add your handling code here:
-        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory, -1);
+        ViewPatient viewPatientDetails = new ViewPatient(splitPanel,patientDirectory,personDirectory, hospitalDirectory, doctorDirectory, -1, false);
         splitPanel.setRightComponent(viewPatientDetails);
     }//GEN-LAST:event_viewButtonActionPerformed
 

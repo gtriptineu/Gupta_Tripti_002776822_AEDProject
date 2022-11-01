@@ -25,18 +25,20 @@ public class ViewPatient extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     HospitalDirectory hospitalDirectory;
     DoctorDirectory doctorDirectory;
+    boolean isDoc;
 
     /**
      * Creates new form ViewPatient
      */
     public ViewPatient(JSplitPane splitPanel,PatientDirectory patientDirectory, PersonDirectory personDirectory,
-            HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory, int userId) {
+            HospitalDirectory hospitalDirectory, DoctorDirectory doctorDirectory, int userId, boolean isDoc) {
         initComponents();
         this.patientDirectory = patientDirectory;
         this.splitPanel = splitPanel;
         this.personDirectory = personDirectory;
         this.hospitalDirectory = hospitalDirectory;
         this.doctorDirectory = doctorDirectory;
+        this.isDoc = isDoc;
         if(userId>0){
             DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
             model.setRowCount(0);
@@ -198,19 +200,19 @@ public class ViewPatient extends javax.swing.JPanel {
                         .addComponent(refreshButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(backButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                        .addComponent(viewVitalsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addVitalsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
                         .addComponent(EditPatientButton)
                         .addGap(10, 10, 10))
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editVitalsButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bookAppButton, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addComponent(bookAppButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(addVitalsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewVitalsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(editVitalsButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -225,19 +227,19 @@ public class ViewPatient extends javax.swing.JPanel {
                             .addComponent(searchButton)
                             .addComponent(refreshButton)
                             .addComponent(backButton)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(EditPatientButton)
-                        .addComponent(addVitalsButton)
-                        .addComponent(viewVitalsButton)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EditPatientButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addComponent(bookAppButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(editVitalsButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editVitalsButton)
+                    .addComponent(addVitalsButton)
+                    .addComponent(viewVitalsButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -336,48 +338,56 @@ public class ViewPatient extends javax.swing.JPanel {
     private void addVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVitalsButtonActionPerformed
         // TODO add your handling code here:
 
-        int selectedRowIndex = viewPatientDetailsTable.getSelectedRow();
+        if(isDoc){
+            int selectedRowIndex = viewPatientDetailsTable.getSelectedRow();
 
-        if(selectedRowIndex<0)
-        {
-            JOptionPane.showMessageDialog(this, "Select a row to add Vital Sign.");
-            return;
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
-        Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
-        int PatientID = selectedPatient.getPatientId();
-        
-        if(selectedPatient.isAppBooked()){
-            selectedPatient.setAppBooked(false);
-            AddVitalSigns addVitalSigns = new AddVitalSigns(splitPanel,patientDirectory,personDirectory,PatientID, hospitalDirectory, doctorDirectory);
-            splitPanel.setRightComponent(addVitalSigns);
-            
-        } else {
-            JOptionPane.showMessageDialog(this, "Please book appointment to add vitals.");
+            if(selectedRowIndex<0)
+            {
+                JOptionPane.showMessageDialog(this, "Select a row to add Vital Sign.");
+                return;
+            }
+
+            DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
+            Patient selectedPatient = (Patient) model.getValueAt(selectedRowIndex, 0);
+            int PatientID = selectedPatient.getPatientId();
+
+            if(selectedPatient.isAppBooked()){
+                selectedPatient.setAppBooked(false);
+                AddVitalSigns addVitalSigns = new AddVitalSigns(splitPanel,patientDirectory,personDirectory,PatientID, hospitalDirectory, doctorDirectory);
+                splitPanel.setRightComponent(addVitalSigns);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Please book appointment to add vitals.");
+            }
+        } else{
+            JOptionPane.showMessageDialog(this, "You can only view vitals.");
         }
     }//GEN-LAST:event_addVitalsButtonActionPerformed
 
     private void editVitalsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editVitalsButtonActionPerformed
         // TODO add your handling code here:
-        int selectedRowIndex = viewVitalsTable.getSelectedRow();
+        if(isDoc){
+            int selectedRowIndex = viewVitalsTable.getSelectedRow();
 
-        if(selectedRowIndex<0)
-        {
-            JOptionPane.showMessageDialog(this, "Select a row to Edit it.");
-            return;
-        }
-        DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
-        int patientSelectedIndex = viewPatientDetailsTable.getSelectedRow();
-        Patient selectedPatient = (Patient) model.getValueAt(patientSelectedIndex, 0);
-        
-        if(selectedPatient.isAppBooked()){
-            selectedPatient.setAppBooked(false);
-            EditVitals editVitals = new EditVitals(splitPanel,patientDirectory,personDirectory,selectedPatient,selectedRowIndex,
-                hospitalDirectory, doctorDirectory);
-            splitPanel.setRightComponent(editVitals);
+            if(selectedRowIndex<0)
+            {
+                JOptionPane.showMessageDialog(this, "Select a row to Edit it.");
+                return;
+            }
+            DefaultTableModel model = (DefaultTableModel) viewPatientDetailsTable.getModel();
+            int patientSelectedIndex = viewPatientDetailsTable.getSelectedRow();
+            Patient selectedPatient = (Patient) model.getValueAt(patientSelectedIndex, 0);
+
+            if(selectedPatient.isAppBooked()){
+                selectedPatient.setAppBooked(false);
+                EditVitals editVitals = new EditVitals(splitPanel,patientDirectory,personDirectory,selectedPatient,selectedRowIndex,
+                    hospitalDirectory, doctorDirectory);
+                splitPanel.setRightComponent(editVitals);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please book appointment to edit vitals.");
+            } 
         } else {
-            JOptionPane.showMessageDialog(this, "Please book appointment to edit vitals.");
+                JOptionPane.showMessageDialog(this, "You can only view vitals.");
         }
     }//GEN-LAST:event_editVitalsButtonActionPerformed
 
